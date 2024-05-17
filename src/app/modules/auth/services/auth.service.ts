@@ -16,4 +16,19 @@ export class AuthService {
   login(data: LoginDto): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/Usuario/Autenticar`, data);
   }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expiration');
+  }
+
+  isLoggedIn(): boolean {
+    const token = localStorage.getItem('token');
+    const expiration = localStorage.getItem('expiration');
+    if (!token || !expiration) {
+      return false;
+    }
+    const expirationDate = new Date(expiration);
+    return expirationDate > new Date();
+  }
 }
