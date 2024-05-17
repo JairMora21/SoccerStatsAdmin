@@ -9,5 +9,5 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideClientHydration(),
-    provideHttpClient(withFetch())  // Añade withFetch() aquí
+    provideHttpClient(withFetch())  
   ]};

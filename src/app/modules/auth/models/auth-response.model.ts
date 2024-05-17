@@ -2,7 +2,7 @@
 export interface AuthResponse {
     token: string | null;
     refreshToken: string | null;
-    expiration: Date | null;
+    expiration: string | null;
     resultado: boolean;
     msg: string;
   }
