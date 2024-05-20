@@ -39,7 +39,7 @@ export class AuthComponent {
             localStorage.setItem(LOCAL_STORAGE.Refreshtoken, response.refreshToken!);
             localStorage.setItem(LOCAL_STORAGE.Expiration, response.expiration!);
           }
-          this.router.navigate(['/players']);
+          this.router.navigate(['/main']);
         } else {
           console.error('Error:', response.msg);
           alert('Login failed: ' + response.msg);

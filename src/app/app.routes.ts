@@ -4,6 +4,7 @@ import { PlayersComponent } from './modules/players/players.component';
 import { authGuard } from './core/guard/auth.guard';
 import { TeamComponent } from './modules/team/team.component';
 import { SeasonsComponent } from './modules/seasons/seasons.component';
+import { InicioComponent } from './modules/inicio/inicio.component';
 
 export const routes: Routes = [
   {
@@ -14,6 +15,11 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
+  },
+  {
+    path: 'main',
+    component: InicioComponent,
+    canActivate: [authGuard] 
   },
   {
     path: 'players',
