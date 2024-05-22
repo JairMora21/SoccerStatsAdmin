@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { NavbarComponent } from "../../shared/components/navbar/navbar.component";
 
 @Component({
-    selector: 'app-seasons',
+    selector: 'app-matches',
     standalone: true,
-    templateUrl: './seasons.component.html',
-    styleUrl: './seasons.component.css',
+    templateUrl: './matches.component.html',
+    styleUrl: './matches.component.css',
     imports: [NavbarComponent]
 })
-export class SeasonsComponent {
+export class MatchesComponent {
 
 }

@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 import { AuthComponent } from './modules/auth/auth.component';
-import { PlayersComponent } from './modules/players/players.component';
 import { authGuard } from './core/guard/auth.guard';
 import { TeamComponent } from './modules/team/team.component';
 import { SeasonsComponent } from './modules/seasons/seasons.component';
 import { InicioComponent } from './modules/inicio/inicio.component';
+import { MatchesComponent } from './modules/matches/matches.component';
 
 export const routes: Routes = [
   {
@@ -22,8 +22,8 @@ export const routes: Routes = [
     canActivate: [authGuard] 
   },
   {
-    path: 'players',
-    component: PlayersComponent,
+    path: 'matches',
+    component: MatchesComponent,
     canActivate: [authGuard] 
   },
   {

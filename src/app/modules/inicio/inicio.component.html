@@ -1,3 +1,152 @@
 <div>
-    <app-navbar></app-navbar>
+  <app-navbar></app-navbar>
+
+  <div class="flex justify-around bg-darkblue-900 text-white py-10 space-x-10">
+    <!-- Mi Equipo -->
+    <div class="flex flex-col items-center">
+      <div class="relative mb-4">
+        <div class="rounded-full bg-darkblue-800 p-4">
+          <!-- Icono del equipo -->
+          <img
+            src="path/to/equipo-icon.png"
+            alt="Mi Equipo"
+            class="w-16 h-16"
+          />
+        </div>
+        <div class="absolute bottom-0 right-0 bg-blue-500 rounded-full p-1">
+          <img src="path/to/football-icon.png" alt="Football" class="w-6 h-6" />
+        </div>
+      </div>
+      <div class="text-lg mb-2">MI EQUIPO</div>
+      <button
+      class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+      (click)="goToTeam()"
+    >
+      Mi Equipo
+    </button>
+      <!-- Estadísticas de Mi Equipo -->
+      <div class="flex justify-around w-full px-10 mt-4">
+        <div class="text-center">
+          <div class="text-lg">2.51</div>
+          <div class="text-xs text-gray-400">Estadística 1</div>
+        </div>
+        <div class="text-center">
+          <div class="text-lg">3/4</div>
+          <div class="text-xs text-gray-400">Estadística 2</div>
+        </div>
+        <div class="text-center">
+          <div class="text-lg">4.613</div>
+          <div class="text-xs text-gray-400">Estadística 3</div>
+        </div>
+      </div>
+      <!-- Gráfico de Mi Equipo -->
+      <div class="flex justify-center w-full px-10 mt-4">
+        <div class="text-center">
+          <img
+            src="path/to/equipo-grafico.png"
+            alt="Gráfico Mi Equipo"
+            class="w-32 h-32"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Partidos -->
+    <div class="flex flex-col items-center">
+      <div class="relative mb-4">
+        <div class="rounded-full bg-darkblue-800 p-4">
+          <!-- Icono de partidos -->
+          <img
+            src="path/to/partidos-icon.png"
+            alt="Partidos"
+            class="w-16 h-16"
+          />
+        </div>
+        <div class="absolute bottom-0 right-0 bg-blue-500 rounded-full p-1">
+          <img src="path/to/football-icon.png" alt="Football" class="w-6 h-6" />
+        </div>
+      </div>
+      <div class="text-lg mb-2">PARTIDOS</div>
+      <button
+      class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+      (click)="goToMatches()"
+    >
+      Partidos
+    </button>
+      <!-- Estadísticas de Partidos -->
+      <div class="flex justify-around w-full px-10 mt-4">
+        <div class="text-center">
+          <div class="text-lg">3/4</div>
+          <div class="text-xs text-gray-400">Estadística 1</div>
+        </div>
+        <div class="text-center">
+          <div class="text-lg">2.51</div>
+          <div class="text-xs text-gray-400">Estadística 2</div>
+        </div>
+        <div class="text-center">
+          <div class="text-lg">4.613</div>
+          <div class="text-xs text-gray-400">Estadística 3</div>
+        </div>
+      </div>
+      <!-- Gráfico de Partidos -->
+      <div class="flex justify-center w-full px-10 mt-4">
+        <div class="text-center">
+          <img
+            src="path/to/partidos-grafico.png"
+            alt="Gráfico Partidos"
+            class="w-32 h-32"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Temporadas -->
+    <div class="flex flex-col items-center">
+      <div class="relative mb-4">
+        <div class="rounded-full bg-darkblue-800 p-4">
+          <!-- Icono de temporadas -->
+          <img
+            src="path/to/temporadas-icon.png"
+            alt="Temporadas"
+            class="w-16 h-16"
+          />
+        </div>
+        <div class="absolute bottom-0 right-0 bg-blue-500 rounded-full p-1">
+          <img src="path/to/football-icon.png" alt="Football" class="w-6 h-6" />
+        </div>
+      </div>
+      <div class="text-lg mb-2">TEMPORADAS</div>
+      <button
+      class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+      (click)="goToSeasons()"
+    >
+      Temporadas
+    </button>
+      <!-- Estadísticas de Temporadas -->
+      <div class="flex justify-around w-full px-10 mt-4">
+        <div class="text-center">
+          <div class="text-lg">4.613</div>
+          <div class="text-xs text-gray-400">Estadística 1</div>
+        </div>
+        <div class="text-center">
+          <div class="text-lg">3/4</div>
+          <div class="text-xs text-gray-400">Estadística 2</div>
+        </div>
+        <div class="text-center">
+          <div class="text-lg">2.51</div>
+          <div class="text-xs text-gray-400">Estadística 3</div>
+        </div>
+      </div>
+      <!-- Gráfico de Temporadas -->
+      <div class="flex justify-center w-full px-10 mt-4">
+        <div class="text-center">
+          <img
+            src="path/to/temporadas-grafico.png"
+            alt="Gráfico Temporadas"
+            class="w-32 h-32"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
