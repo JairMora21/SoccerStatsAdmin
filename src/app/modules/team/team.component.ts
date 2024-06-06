@@ -48,11 +48,17 @@ export class TeamComponent {
         console.error('Error al obtener jugadores', error);
       },
     });
+
+    
   }
 
   createPlayer() {
     const dialogRef = this.dialog.open(CreatePlayerComponent, {
       disableClose: true,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getPlayers();
     });
   }
 

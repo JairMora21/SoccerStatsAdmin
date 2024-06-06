@@ -28,9 +28,9 @@ export class DeletePlayerComponent {
   }
 
   deletePlayer() {
+    console.log('Eliminando jugador', this.data);
     this._teamService.deletePlayer(this.data.id).subscribe({
       next: (data) => {
-        console.log(data);
         this.closeDialog();
       },
       error: (error) => {

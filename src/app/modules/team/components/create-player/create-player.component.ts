@@ -22,17 +22,7 @@ import { LOCAL_STORAGE } from '../../../../shared/Constants/local-storage';
 })
 export class CreatePlayerComponent {
 
-  // nombre: string = '';
-  // apellido: string = '';
-  // dorsal: number = 0; 
-  // selectedPosition: number = 0;
-  // player: ICreatePlayer = {
-  //   nombre: this.nombre,
-  //   apellido: this.apellido,
-  //   idEquipo: Number(localStorage.getItem('teamId')),
-  //   idPosicion: this.selectedPosition,
-  //   activo: true
-  // };
+
 
   playerForm: FormGroup = new FormGroup({});
   positions: ResultPositions[] = [];
@@ -85,10 +75,14 @@ export class CreatePlayerComponent {
       const playerData: ICreatePlayer = {
         nombre: this.playerForm.value.nombre,
         apellido: this.playerForm.value.apellido,
+        dorsal: this.playerForm.value.dorsal.toString(),
         idEquipo: Number(localStorage.getItem(LOCAL_STORAGE.TeamId) || '0'), 
         idPosicion: this.playerForm.value.selectedPosition,
         activo: true
       };
+
+      console.log(playerData);
+      
       
       this._teamService.createPlayer(playerData).subscribe({
         next: (data) => {
@@ -106,9 +100,8 @@ export class CreatePlayerComponent {
       });
     } else {
       console.log('El formulario no es válido.');
-      // Aquí puedes manejar lo que sucede cuando el formulario es inválido
-      // Por ejemplo, mostrar mensajes de error, marcar los campos como tocados, etc.
-      this.playerForm.markAllAsTouched(); // Opcional: Marca todos los campos como tocados para mostrar los mensajes de error
+     
+      this.playerForm.markAllAsTouched(); 
     }
   }  
 }

@@ -4,6 +4,6 @@ export interface ICreatePlayer {
     nombre: string;
     apellido: string;
     img?: string;  // Opcional
-    dorsal?: string;  // Opcional
+    dorsal: string;  // Opcional
     activo: boolean;
 }
