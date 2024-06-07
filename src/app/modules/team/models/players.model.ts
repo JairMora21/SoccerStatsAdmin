@@ -8,6 +8,7 @@ export interface IJugadores {
   
   export interface ResultPlayers {
     id:       number;
+    idPosicion: number;
     posicion: string;
     equipo:   string;
     nombre:   string;

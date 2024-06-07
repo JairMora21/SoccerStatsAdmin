@@ -76,9 +76,7 @@ export class TeamComponent {
   editPlayer(player: ResultPlayers) {
     const dialogRef = this.dialog.open(EditPlayerComponent, {
       disableClose: true,
-      height: '85%',
-      width: '430px',
-      data: { player: player },
+      data: player,
     });
 
     dialogRef.afterClosed().subscribe((result) => {

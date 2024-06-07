@@ -1,6 +1,6 @@
 export interface ICreatePlayer {
     idPosicion: number;
-    idEquipo: number;
+    idEquipo?: number;
     nombre: string;
     apellido: string;
     img?: string;  // Opcional

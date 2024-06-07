@@ -35,6 +35,7 @@ export class CreatePlayerComponent {
     public dialogRef: MatDialogRef<CreatePlayerComponent>,
     private _teamService: TeamService,
     private _attributesService: AttributesService,
+    
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
