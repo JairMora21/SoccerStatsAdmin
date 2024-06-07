@@ -23,8 +23,22 @@ import { FormsModule } from '@angular/forms';
 export class TeamComponent {
   
   players: ResultPlayers[] = [];
-  filteredPlayers: ResultPlayers[] = [...this.players];
+  filteredPlayers: ResultPlayers[] = [];
 
+
+  searchInput: string = '';
+  filterData() {
+    if (!this.searchInput) {
+      this.filteredPlayers = this.players; 
+    } else {
+      this.filteredPlayers = this.players.filter(player =>
+        player.nombre.toLowerCase().includes(this.searchInput.toLowerCase()) ||
+        player.apellido.toLowerCase().includes(this.searchInput.toLowerCase()) ||
+        player.dorsal.includes(this.searchInput) ||
+        player.posicion.toLowerCase().includes(this.searchInput.toLowerCase()) 
+      );
+    }
+  }
 
   sortColumn = 'nombre'; 
   sortOrder = 'asc'; 
@@ -90,6 +104,7 @@ export class TeamComponent {
         } else {
           console.log(data.result);
           this.players = data.result;
+          this.filteredPlayers = this.players;
         }
       },
       error: (error) => {
