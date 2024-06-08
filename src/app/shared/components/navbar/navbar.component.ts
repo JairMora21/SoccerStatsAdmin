@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TeamService } from '../../../modules/team/services/team.service';
 import {IEquipos,ResultEquipo} from '../../../modules/team/models/equipos.model';
 import { CommonModule } from '@angular/common';
@@ -19,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class NavbarComponent {
   equipos: ResultEquipo[] = [];
   currentTeam: string = '';
+  @Input() isTeamSelected: boolean = false;
 
   constructor(private _teamService: TeamService, private router: Router) {}
 
