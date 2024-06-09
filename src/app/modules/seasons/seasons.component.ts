@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { ITemporada, ResultTemporadas } from '../../core/models/seasons/season.model';
 import { SeasonService } from './services/season.service';
+import { CreateSeasonComponent } from './components/create-season/create-season.component';
 
 
 @Component({
@@ -63,5 +64,11 @@ export class SeasonsComponent {
     }
 
     editSeason() {  
+    }
+    createSeason() {
+        this.dialog.open(CreateSeasonComponent, {
+            width: '500px',
+            data: {}
+        });
     }
 }

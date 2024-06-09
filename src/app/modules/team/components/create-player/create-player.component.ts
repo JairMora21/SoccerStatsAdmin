@@ -26,7 +26,6 @@ export class CreatePlayerComponent {
 
   playerForm: FormGroup = new FormGroup({});
   positions: ResultPositions[] = [];
-
   attemptedSubmit = false;  // Esta propiedad indica si se ha intentado enviar el formulario
 
 

@@ -21,7 +21,7 @@ export class SeasonService {
     return this._http.get<ResultTemporadas>(url);
   }
 
-  createSeason(season: ITemporadaCreate) {
+  createSeason(season: ITemporadaCreate): Observable<any> {
     let url = `${this.apiUrl}/Temporada/AddTemporada`;
     return this._http.post(url, season);
   }
