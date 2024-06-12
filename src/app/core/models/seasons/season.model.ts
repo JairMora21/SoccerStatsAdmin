@@ -21,4 +21,5 @@ export interface ITemporada {
     fechaFinal:      null;
     posicion:        null;
     nombreTemporada: string;
+    idClasificacion: number;
 }

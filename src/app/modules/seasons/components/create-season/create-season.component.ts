@@ -51,22 +51,24 @@ export class CreateSeasonComponent {
 
   createSeason() {
     this.attemptedSubmit = true;
-
     const newSeason: ITemporadaCreate = {
       idEquipo: Number(localStorage.getItem(LOCAL_STORAGE.TeamId)),
-      nombreTemporada: this.seasonForm.value.nombre,
-      fechaInicio: this.seasonForm.value.fechaInicio,
+      nombreTemporada: this.seasonForm.value.nombreTemporada,
+      fechaInicio: this.seasonForm.value.fechaInicio.toISOString().split('T')[0],
       noTemporada: this.seasonForm.value.noTemporada
     }
+
     console.log(newSeason);
     
-
+    
     if (this.seasonForm.invalid) {
       return;
     }
+
     this._seasonService.createSeason(newSeason).subscribe({
       next: (data) => {
         if (!data.isSuccess) {
+          console.log(data);
           console.error('Error al crear temporada', data.errorMessages);
         } else {
           this.dialogRef.close();

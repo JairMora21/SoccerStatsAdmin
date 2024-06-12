@@ -41,6 +41,8 @@
                             <th scope="col" class="px-4 py-3"><span (click)="sortData('inicio')" class="cursor-pointer">Inicio <i class="fas fa-arrow-down"></i></span></th>
                             <th scope="col" class="px-4 py-3"><span (click)="sortData('final')" class="cursor-pointer">Final <i class="fas fa-arrow-down"></i></span></th>
                             <th scope="col" class="px-4 py-3"><span (click)="sortData('posicion')" class="cursor-pointer">Posicion <i class="fas fa-arrow-down"></i></span></th>
+                            <th scope="col" class="px-4 py-3"><span (click)="sortData('posicion')" class="cursor-pointer">Resultado <i class="fas fa-arrow-down"></i></span></th>
+
                             <th scope="col" class="px-4 py-3">
                               <span class="sr-only">Acciones</span>
                             </th>
@@ -66,12 +68,14 @@
                             <td class="px-4 py-3">
                                 {{ season.posicion ? season.posicion : 'N/A' }}
                             </td>
-                            
+                            <td class="px-4 py-3">
+                                {{ season.clasificacion ? season.clasificacion : 'N/A' }}
+                            </td>
                             <td class="px-4 py-3 flex items-center justify-end">
                                 <mat-menu #appMenu="matMenu">
                                     <ng-template matMenuContent>
-                                      <button mat-menu-item (click)="deleteSeason()">Eliminar</button>
-                                      <button mat-menu-item (click)="editSeason()">Editar</button>
+                                      <button mat-menu-item (click)="deleteSeason(season.nombreTemporada, season.id)">Eliminar</button>
+                                      <button mat-menu-item (click)="editSeason(season)">Editar</button>
                                     </ng-template>
                                 </mat-menu>
                                   <button mat-icon-button [matMenuTriggerFor]="appMenu">

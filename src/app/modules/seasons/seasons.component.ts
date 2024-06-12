@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { Router } from '@angular/router';
 import { LOCAL_STORAGE } from '../../shared/Constants/local-storage';
@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { ITemporada, ResultTemporadas } from '../../core/models/seasons/season.model';
 import { SeasonService } from './services/season.service';
 import { CreateSeasonComponent } from './components/create-season/create-season.component';
+import { UpdateSeasonComponent } from './components/update-season/update-season.component';
+import { DeleteSeasonComponent } from './components/delete-season/delete-season.component';
 
 
 @Component({
@@ -26,6 +28,7 @@ export class SeasonsComponent {
 
 
     constructor(
+        private injector: Injector,
         private router: Router, 
         private dialog: MatDialog,
         private _seasonService: SeasonService,
@@ -41,34 +44,58 @@ export class SeasonsComponent {
             console.error('Invalid Team ID');
             return;
         }
-        console.log(teamId)
         this._seasonService.getSeasons(teamId).subscribe({
             next: (data: ResultTemporadas) => {
                 if (!data.isSuccess) {
-
                     console.error('Error retrieving seasons:', data);
                     return;
                 }
                 this.seasons = data.result;
-                this.filteredSeasons = [...this.seasons]; // Clonamos el array para evitar mutaciones directas
+                this.filteredSeasons = [...this.seasons]; 
+                console.log('Seasons:', this.seasons);
+                
             },
             error: (error) => {
                 console.error('An error occurred while fetching seasons:', error);
             }
         });
     }
+
     sortData(column: any) {
     }
 
-    deleteSeason() {
+    deleteSeason(seasonName :string, seasonId: number) {
+        const dialogRef = this.dialog.open(DeleteSeasonComponent, {
+            data: {seasonName: seasonName, seasonId: seasonId},
+            injector: this.injector,
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            
+            
+        });
     }
 
-    editSeason() {  
+    editSeason(season: ITemporada) {  
+        const dialogRef = this.dialog.open(UpdateSeasonComponent, {
+            data: season,
+            injector: this.injector,
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            this.getSeasons();
+        });
     }
     createSeason() {
-        this.dialog.open(CreateSeasonComponent, {
-            width: '500px',
-            data: {}
+        const dialogRef = this.dialog.open(CreateSeasonComponent, {
+            data: {},
+            injector: this.injector,
         });
+
+        dialogRef.afterClosed().subscribe(result => {
+            this.getSeasons();
+        });
+
+
     }
 }
