@@ -18,7 +18,7 @@ export interface ITemporada {
     equipo:          string;
     noTemporada:     number;
     fechaInicio:     Date;
-    fechaFinal:      null;
+    fechaFinal:      Date;
     posicion:        null;
     nombreTemporada: string;
     idClasificacion: number;

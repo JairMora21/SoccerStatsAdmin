@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ResultTemporadas } from '../../../core/models/seasons/season.model';
 import { ITemporadaCreate } from '../../../core/models/seasons/create-season.model';
 import { ITemporadsUpdate } from '../../../core/models/seasons/update-season.model';
+import { APIResponse } from '../../../core/models/api-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,8 +33,8 @@ export class SeasonService {
 
   }
 
-  deleteSeason(idSeason: number) {
+  deleteSeason(idSeason: number): Observable<APIResponse>{
     let url = `${this.apiUrl}/Temporada/DeleteTemporada/${idSeason}`;
-    return this._http.delete(url);
+    return this._http.delete<APIResponse>(url);
   }
 }
