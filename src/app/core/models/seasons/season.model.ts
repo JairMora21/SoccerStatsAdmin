@@ -14,12 +14,12 @@ export interface ResultTemporada {
 
 export interface ITemporada {
     id:              number;
-    clasificacion:   null;
+    clasificacion:   any;
     equipo:          string;
     noTemporada:     number;
     fechaInicio:     Date;
     fechaFinal:      Date;
-    posicion:        null;
+    posicion:        any;
     nombreTemporada: string;
     idClasificacion: number;
 }

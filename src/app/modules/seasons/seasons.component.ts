@@ -25,7 +25,10 @@ export class SeasonsComponent {
 
     filteredSeasons: ITemporada[] = [];
     seasons: ITemporada[] = [];
+    searchInput: string = '';
 
+    sortColumn: string = 'noTemporada';
+    sortOrder: 'asc' | 'desc' = 'asc';
 
     constructor(
         private injector: Injector,
@@ -61,8 +64,21 @@ export class SeasonsComponent {
         });
     }
 
-    sortColumn: string = 'noTemporada';
-    sortOrder: 'asc' | 'desc' = 'asc';
+
+
+    filterData() {
+        console.log('searchInput:', this.searchInput);
+        if (!this.searchInput) {
+            this.filteredSeasons = this.seasons;
+        } else {
+            this.filteredSeasons = this.seasons.filter(season =>
+                season.noTemporada.toString().includes(this.searchInput) ||
+                season.nombreTemporada.toLowerCase().includes(this.searchInput.toLowerCase()) ||
+                season.clasificacion?.toLowerCase().includes(this.searchInput.toLowerCase()) ||
+                season.posicion?.toLowerCase().includes(this.searchInput.toLowerCase()) 
+            );
+        }
+    }
     
     sortData(column: keyof ITemporada) { // Asegúrate de que SeasonType sea la interfaz adecuada para tus temporadas
       if (this.sortColumn === column) {
