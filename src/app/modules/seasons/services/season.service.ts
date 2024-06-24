@@ -8,14 +8,12 @@ import { ITemporadsUpdate } from '../../../core/models/seasons/update-season.mod
 import { APIResponse } from '../../../core/models/api-response.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SeasonService {
-
   private apiUrl = environment.apiUrl;
 
-  constructor(    private _http: HttpClient  ) { }
-
+  constructor(private _http: HttpClient) {}
 
   getSeasons(idTeam: number): Observable<ResultTemporadas> {
     let url = `${this.apiUrl}/Temporada/Temporadas/${idTeam}`;
@@ -30,10 +28,9 @@ export class SeasonService {
   updateSeason(idSeason: number, season: ITemporadsUpdate) {
     let url = `${this.apiUrl}/Temporada/UpdateTemporada/${idSeason}`;
     return this._http.put(url, season);
-
   }
 
-  deleteSeason(idSeason: number): Observable<APIResponse>{
+  deleteSeason(idSeason: number): Observable<APIResponse> {
     let url = `${this.apiUrl}/Temporada/DeleteTemporada/${idSeason}`;
     return this._http.delete<APIResponse>(url);
   }
