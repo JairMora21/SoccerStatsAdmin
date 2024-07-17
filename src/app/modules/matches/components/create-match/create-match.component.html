@@ -1,1 +1,27 @@
-<p>create-match works!</p>
+<div id="createProductContainer" class="overflow-y-auto overflow-x-hidden z-50 w-full max-w-2xl mx-auto p-5 bg-white shadow-lg dark:bg-gray-800">
+    <div *ngIf="currentViewIndex === 0">
+        <div>Datos del partido</div>
+  
+        <mat-form-field>
+            <input
+              type="number"
+              class="form-control"
+              matInput
+              name="value"
+              placeholder="Slab"
+              formControlName="value">
+          </mat-form-field>
+          
+
+
+    </div>
+    <div *ngIf="currentViewIndex === 1">Contenido de la Vista 2: Selección de Jugadores</div>
+    <div *ngIf="currentViewIndex === 2">Contenido de la Vista 3: Goleadores del Partido</div>
+    <div *ngIf="currentViewIndex === 3">Contenido de la Vista 4: Tarjetas</div>
+    <div *ngIf="currentViewIndex === 4">Contenido de la Vista 5: Resumen</div>
+  
+    <div class="flex justify-between mt-4">
+        <button class="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-black rounded disabled:opacity-50" (click)="navigate(-1)" [disabled]="currentViewIndex === 0">Atrás</button>
+        <button class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded disabled:opacity-50" (click)="navigate(1)" [disabled]="currentViewIndex === 4">Siguiente</button>
+    </div>
+</div>

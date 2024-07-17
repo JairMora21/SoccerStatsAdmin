@@ -20,6 +20,7 @@ import {
 import { get } from 'http';
 import { firstValueFrom } from 'rxjs';
 import { DeleteMatchComponent } from './components/delete-match/delete-match.component';
+import { CreateMatchComponent } from './components/create-match/create-match.component';
 
 @Component({
   selector: 'app-matches',
@@ -181,7 +182,15 @@ export class MatchesComponent {
   editSeason() {}
 
 
-  createMatch() {}
+  createMatch() {
+    const dialogRef = this.dialog.open(CreateMatchComponent, {
+      injector: this.injector,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+    });
+  }
 
   deleteMatch(rivalName: string, matchId: number) {
 
