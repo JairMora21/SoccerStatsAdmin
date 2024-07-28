@@ -33,7 +33,8 @@ import { CreateMatchComponent } from './components/create-match/create-match.com
     MatMenuModule,
     MatIconModule,
     FormsModule,
-  ],
+    CreateMatchComponent
+],
 })
 export class MatchesComponent {
   lastSeasonId: number = 0;
@@ -51,6 +52,7 @@ export class MatchesComponent {
     private dialog: MatDialog,
     private _matchService: MatchService,
     private _seasonService: SeasonService
+
   ) {}
 
   async ngOnInit() {
@@ -185,6 +187,7 @@ export class MatchesComponent {
   createMatch() {
     const dialogRef = this.dialog.open(CreateMatchComponent, {
       injector: this.injector,
+
     });
 
     dialogRef.afterClosed().subscribe((result) => {

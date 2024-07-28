@@ -4,6 +4,13 @@ export interface IEquipos {
     errorMessages: null | Errores;
     result:        ResultEquipo[];
   }
+
+export interface IEquipo{
+    statusCode: number;
+    isSuccess: boolean;
+    errorMessages: null;
+    result: ResultEquipo;
+}
   
   export interface IEquipo {
     statusCode:    number;

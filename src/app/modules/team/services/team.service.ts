@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IEquipos } from '../models/equipos.model';
+import { IEquipo, IEquipos } from '../models/equipos.model';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../../enviroment';
 import { HttpClient } from '@angular/common/http';
@@ -23,6 +23,11 @@ export class TeamService {
     return this._http.get<IEquipos>(url);
   }
 
+  getTeamById(id: number): Observable<IEquipo> {
+    const url = `${this.apiUrl}/Equipo/Equipo/${id}`;
+    return this._http.get<IEquipo>(url);
+  }
+
   getAllPlayers(idEquipo: number): Observable<IJugadores> {
     const url = `${this.apiUrl}/Equipo/Jugadores/${idEquipo}`;
     return this._http.get<IJugadores>(url);
@@ -42,4 +47,6 @@ export class TeamService {
     const url = `${this.apiUrl}/Equipo/UpdateJugador/${id}`;
     return this._http.put(url, player);
   }
+
+
 }

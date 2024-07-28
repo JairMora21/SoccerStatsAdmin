@@ -1,1 +1,49 @@
-<p>result works!</p>
+<div [formGroup]="formGroup">
+  <label for="nombre-rival" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre del
+    Rival</label>
+  <input type="text" id="nombre-rival" formControlName="nombreRival"
+    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+    placeholder="Nombre del Rival" required />
+
+<!-- Goles a Favor -->
+<div class="block mb-2">
+  <label for="goles-favor" class="text-sm font-medium text-gray-900 dark:text-white">Goles a Favor</label>
+  <div class="relative flex items-center">
+    <button mat-mini-fab color="primary" (click)="decrementValue('golesFavor')" aria-label="Decrementar goles a favor">
+      <mat-icon>remove</mat-icon>
+    </button>
+    <mat-form-field appearance="fill">
+      <mat-label>Goles a Favor</mat-label>
+      <input matInput [type]="number" formControlName="golesFavor">
+    </mat-form-field>
+    <button mat-mini-fab color="primary" (click)="incrementValue('golesFavor')" aria-label="Incrementar goles a favor">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+
+<!-- Goles en Contra -->
+<div class="block mb-2">
+  <label for="goles-contra" class="text-sm font-medium text-gray-900 dark:text-white">Goles en Contra</label>
+  <div class="relative flex items-center">
+    <button mat-mini-fab color="primary" (click)="decrementValue('golesContra')" aria-label="Decrementar goles en contra">
+      <mat-icon>remove</mat-icon>
+    </button>
+    <mat-form-field appearance="fill">
+      <mat-label>Goles en Contra</mat-label>
+      <input matInput [type]="number" formControlName="golesContra">
+    </mat-form-field>
+    <button mat-mini-fab color="primary" (click)="incrementValue('golesContra')" aria-label="Incrementar goles en contra">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+
+
+  <!-- <label for="fecha-partido" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha del Partido</label>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" formControlName="fechaInicio" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field> -->
+</div>
