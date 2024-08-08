@@ -35,21 +35,21 @@ export class DeleteMatchComponent {
 
   deleteMatch() {
     console.log('Eliminando partido', this.data.matchId);
-    // this._matchService.deleteMatch(this.data.matchId).subscribe({
-    //   next: (data : APIResponse) => {
-    //     if(!data.isSuccess) {
-    //       console.error('Error deleting the match:', data);
-    //       this.showErrorMsg = true;
-    //       this.errorMessages = data.errorMessages;
-    //       return;
-    //     }
-    //     console.log('Match deleted:', data);
-    //     this.dialogRef.close();
-    //   },
-    //   error: (error) => {
-    //     console.error('An error occurred while deleting the match:', error);
-    //   }
-    // });
+    this._matchService.deleteMatch(this.data.matchId).subscribe({
+      next: (data : APIResponse) => {
+        if(!data.isSuccess) {
+          console.error('Error deleting the match:', data);
+          this.showErrorMsg = true;
+          this.errorMessages = data.errorMessages;
+          return;
+        }
+        console.log('Match deleted:', data);
+        this.dialogRef.close();
+      },
+      error: (error) => {
+        console.error('An error occurred while deleting the match:', error);
+      }
+    });
   }
 
 }

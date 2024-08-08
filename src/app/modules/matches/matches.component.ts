@@ -181,7 +181,6 @@ export class MatchesComponent {
 
   }
 
-  deleteSeason() {}
 
   editSeason() {}
 

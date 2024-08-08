@@ -31,7 +31,7 @@ export class MatchService {
     return this._http.put<APIResponse>(url, match);
   }
 
-  deleteMatch(matchId: string): Observable<APIResponse> {
+  deleteMatch(matchId: number): Observable<APIResponse> {
     const url = `${this.apiUrl}/Partido/DeletePartido/${matchId}`;
     return this._http.delete<APIResponse>(url);
   }
