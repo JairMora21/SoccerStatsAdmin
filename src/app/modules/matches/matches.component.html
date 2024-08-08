@@ -29,18 +29,19 @@
 
                 <div class="flex items-center justify-between">
                     <form class="flex-grow-0 max-w-sm">
-                        <select id="countries"
+                        <select id="countries" name="countries"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            (change)="onSeasonChange($event)">
-                            <option selected>Selecciona una temporada</option>
+                            [(ngModel)]="seasonSelectd" (change)="onSeasonChange($event)">
+                            <option value="">Selecciona una temporada</option>
                             <option *ngFor="let season of seasons" [value]="season.id">{{ season.nombreTemporada }}
                             </option>
                         </select>
+
                     </form>
 
                     <div
                         class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                        <button (click)="createMatch()"  type="button" id="createMatchButton"
+                        <button (click)="createMatch()" type="button" id="createMatchButton"
                             class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                             <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -122,5 +123,3 @@
         </div>
     </div>
 </section>
-
-

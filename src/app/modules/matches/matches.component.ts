@@ -41,6 +41,7 @@ export class MatchesComponent {
   searchInput: string = '';
   filteredMatches: IResultMatch[] = [];
   seasons: ITemporada[] = [];
+  seasonSelectd: number = 0;
 
   matches: IResultMatch[] = [];
 
@@ -57,9 +58,9 @@ export class MatchesComponent {
 
   async ngOnInit() {
     await this.getSeasons();
-    if (this.lastSeasonId > 0) {
-      // Asegurarse de que lastSeasonId sea válido antes de llamar getMatches
-      this.getMatches(this.lastSeasonId);
+    console.log('Seasons:', this.seasonSelectd);
+    if (this.seasonSelectd > 0) {
+      this.getMatches(this.seasonSelectd);
     } else {
       console.log('ID de temporada no disponible para cargar partidos.');
     }
@@ -76,7 +77,7 @@ export class MatchesComponent {
           this.seasons = data.result;
           if (this.seasons.length > 0) {
             const lastSeason = this.seasons[this.seasons.length - 1];
-            this.lastSeasonId = lastSeason.id;
+            this.seasonSelectd = lastSeason.id;
           } else {
             console.log('No hay temporadas disponibles.');
           }
@@ -90,7 +91,7 @@ export class MatchesComponent {
       console.log('ID de equipo no encontrado en almacenamiento local.');
     }
   }
-  getMatches(idSeason: number = 0) {
+   getMatches(idSeason: number = 0) {
     if (idSeason) {
       this._matchService.showMatches(idSeason).subscribe((data: IMatches) => {
         if (data.isSuccess) {
@@ -112,6 +113,7 @@ export class MatchesComponent {
     const selectElement = event.target as HTMLSelectElement | null;
     if (selectElement) {
       const seasonId = selectElement.value;
+      this.seasonSelectd = +seasonId;
       this.getMatches(+seasonId);
     } else {
       console.log('No se pudo obtener el select element');
@@ -184,14 +186,16 @@ export class MatchesComponent {
   editSeason() {}
 
 
-  createMatch() {
+   createMatch() {
     const dialogRef = this.dialog.open(CreateMatchComponent, {
+      data: {
+        seasonId: this.seasonSelectd,
+      },
       injector: this.injector,
-
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
+       this.getMatches(this.seasonSelectd);
     });
   }
 

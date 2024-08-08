@@ -1,11 +1,25 @@
 export interface ICreateMatch {
-    idEquipo: number;
-    idTemporada: number;
-    idTipoPartido: number;
-    idResultado: number;
-    fecha: Date;
-    nombreRival: string;
-    golesFavor: number;
-    golesContra: number;
-  }
-  
+  result: Result;
+  playerStats: PlayerStats[];
+}
+
+
+export interface Result {
+  NombreRival: string;
+  GolesFavor: number;
+  GolesContra: number;
+  Fecha: string;
+  IdResultado: number;
+  IdTipoPartido: number;
+  IdTemporada: number;
+  IdEquipo: number;
+}
+
+export interface PlayerStats {
+  id: number;
+  nombre: string;
+  dorsal: string;
+  goles: number;
+  amarillas: number;
+  rojas: number;
+}

@@ -9,7 +9,7 @@ import { SummaryMatchComponent } from "./steps/summary-match/summary-match.compo
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatStepperModule } from '@angular/material/stepper';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
 import { LOCAL_STORAGE } from '../../../../shared/Constants/local-storage';
 import { IJugadores, ResultPlayers } from '../../../team/models/players.model';
@@ -22,6 +22,8 @@ import { FormsModule } from '@angular/forms'; // Importar FormsModule
 import { ResultEquipo } from '../../../team/models/equipos.model';
 import { AttributesService } from '../../../../shared/services/attributes.service';
 import { ITypeMatch, ResultTypeMatch } from '../../../../core/models/attributes/type-match.model';
+import { PlayerStats } from '../../../../core/models/matches/create-match .model';
+import { MatchService } from '../../services/match.service';
 
 @Component({
   selector: 'app-create-match',
@@ -60,21 +62,28 @@ export class CreateMatchComponent {
 
 
   constructor(private fb: FormBuilder,
+    public dialogRef: MatDialogRef<CreateMatchComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _teamService: TeamService,
-    private _attributesService: AttributesService
+    private _attributesService: AttributesService,
+    private _matchService: MatchService
 
 
   ) { }
 
   ngOnInit(): void {
+    const idTeam = Number(localStorage.getItem(LOCAL_STORAGE.TeamId));
+
     this.form = this.fb.group({
       result: this.fb.group({
-        nombreRival: ['a', Validators.required],
-        golesFavor: [0],
-        golesContra: [0],
-        fecha: ['aa', Validators.required],
-        typeOfMatch: [1, Validators.required],
+        NombreRival: ['', Validators.required],
+        GolesFavor: [0],
+        GolesContra: [0],
+        Fecha: ['', Validators.required],
+        IdTipoPartido: [1, Validators.required],
+        IdTemporada: [this.data.seasonId],
+        IdEquipo: [idTeam],
+        IdResultado: [0],
       }),
       playerStats: this.fb.array([]),
     });
@@ -184,7 +193,7 @@ export class CreateMatchComponent {
     const totalGoalsPlayers = this.selectedParticipatePlayers.reduce((acc, player) => acc + player.goles, 0);
     const totalGoalsDefault = this.defaultGoals.reduce((acc, player) => acc + player.goles, 0);
     const totalGoals = totalGoalsPlayers + totalGoalsDefault;
-    const goalsInMatch = this.form.get('result.golesFavor')?.value;
+    const goalsInMatch = this.form.get('result.GolesFavor')?.value;
     if (totalGoals >= goalsInMatch) {
       this.isMoreThanTotalGoals = true
       return;
@@ -246,32 +255,54 @@ export class CreateMatchComponent {
     return this.selectedParticipatePlayers.some(player => player.amarillas > 0 || player.rojas > 0);
   }
 
+  getResultId(goalsAgainst: number, goalsFor: number): number {
+    if (goalsAgainst > goalsFor) {
+      return 3;
+    }
+    if (goalsAgainst === goalsFor) {
+      return 2;
+    }
+
+    return 1;
+  }
+
   onSubmit() {
-    const defaultPlayers = this.defaultGoals.filter(player => player.goles > 0);
-    this.selectedParticipatePlayers = [...defaultPlayers, ...this.selectedParticipatePlayers];
 
-    // Limpiar el FormArray antes de llenarlo
-    this.playerStats.clear();
-
-    // Agregar todos los jugadores seleccionados al FormArray como objetos completos
-    this.selectedParticipatePlayers.forEach(player => {
-      this.playerStats.push(this.fb.group(player));
-    });
     console.log(this.form.value);
 
     if (this.form.valid) {
-      console.log(this.form.value);
-      console.log('selectedParticipatePlayersId:', this.selectedParticipatePlayers);
+      const defaultPlayers = this.defaultGoals.filter(player => player.goles > 0);
+      this.selectedParticipatePlayers = [...defaultPlayers, ...this.selectedParticipatePlayers];
+      this.selectedParticipatePlayers.forEach(player => {
+        this.playerStats.push(this.fb.group(player));
+      });
 
+      const goalsAgainst = this.form.get('result.GolesContra')?.value;
+      const goalsFor = this.form.get('result.GolesFavor')?.value;
+      const resultId = this.getResultId(goalsAgainst, goalsFor);
+      this.form.get('result.IdResultado')?.setValue(resultId);
+
+      console.log(this.form.value);
+
+      this._matchService.createMatch(this.form.value).subscribe({
+        next: (data: any) => {
+          if (data.isSuccess == false) {
+            console.error('Error al crear partido', data.errorMessages);
+          } else {
+            console.log(data.result);
+            this.closeDialog();
+          }
+        },
+        error: (error) => {
+          console.error('Error al crear partido', error);
+        },
+      });
+      this.closeDialog();
     }
   }
-}
 
-interface PlayerStats {
-  id: number;
-  nombre: string;
-  dorsal: string;
-  goles: number;
-  amarillas: number;
-  rojas: number;
+  closeDialog() {
+    this.dialogRef.close();
+  }
+
 }
