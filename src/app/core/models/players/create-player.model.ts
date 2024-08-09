@@ -1,9 +1,9 @@
 export interface ICreatePlayer {
-    idPosicion: number;
-    idEquipo?: number;
-    nombre: string;
-    apellido: string;
-    img?: string;  // Opcional
-    dorsal: string;  // Opcional
-    activo: boolean;
+    IdPosicion: number;
+    IdEquipo?: number;
+    Nombre: string;
+    Apellido: string;
+    Img?: string;  // Opcional
+    Dorsal: string;  // Opcional
+    Activo: boolean;
 }

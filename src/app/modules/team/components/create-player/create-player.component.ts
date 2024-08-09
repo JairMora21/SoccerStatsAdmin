@@ -73,13 +73,14 @@ export class CreatePlayerComponent {
     this.attemptedSubmit = true;  
     if (this.playerForm.valid) {
       const playerData: ICreatePlayer = {
-        nombre: this.playerForm.value.nombre,
-        apellido: this.playerForm.value.apellido,
-        dorsal: this.playerForm.value.dorsal.toString(),
-        idEquipo: Number(localStorage.getItem(LOCAL_STORAGE.TeamId) || '0'), 
-        idPosicion: this.playerForm.value.selectedPosition,
-        activo: true
+        Nombre: this.playerForm.value.nombre,
+        Apellido: this.playerForm.value.apellido,
+        Dorsal: this.playerForm.value.dorsal.toString(),
+        IdEquipo: Number(localStorage.getItem(LOCAL_STORAGE.TeamId) || '0'), 
+        IdPosicion: this.playerForm.value.selectedPosition,
+        Activo: true
       };
+      
 
       console.log(playerData);
       

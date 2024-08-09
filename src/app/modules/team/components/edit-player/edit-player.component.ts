@@ -79,13 +79,14 @@ export class EditPlayerComponent {
     console.log(this.playerForm.value);
 
     const playerToUpdate: IUpdatePlayer = {
-      nombre: this.playerForm.value.nombre,
-      apellido: this.playerForm.value.apellido,
-      dorsal: this.playerForm.value.dorsal,
-      idPosicion: this.playerForm.value.posicion,
-      activo: this.player.activo,
-      idEquipo: Number(localStorage.getItem(LOCAL_STORAGE.TeamId)),
+      Nombre: this.playerForm.value.nombre,
+      Apellido: this.playerForm.value.apellido,
+      Dorsal: this.playerForm.value.dorsal,
+      IdPosicion: this.playerForm.value.posicion,
+      Activo: this.player.activo,
+      IdEquipo: Number(localStorage.getItem(LOCAL_STORAGE.TeamId)),
     };
+
     
     this._teamService.updatePlayer(this.player.id, playerToUpdate).subscribe({
       next: (data) => {
