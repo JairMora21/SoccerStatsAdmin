@@ -72,8 +72,22 @@ export class CreateMatchComponent {
   ) { }
 
   ngOnInit(): void {
-    const idTeam = Number(localStorage.getItem(LOCAL_STORAGE.TeamId));
 
+    this.initForm();
+    this.getPlayers();
+    this.getTeamData();
+    this.getTypesOfMatches();
+  }
+
+  get result() {
+    return this.form.get('result') as FormGroup;
+  }
+  get playerStats(): FormArray {
+    return this.form.get('playerStats') as FormArray;
+  }
+
+  initForm(){
+    const idTeam = Number(localStorage.getItem(LOCAL_STORAGE.TeamId));
     this.form = this.fb.group({
       result: this.fb.group({
         NombreRival: ['', Validators.required],
@@ -87,16 +101,6 @@ export class CreateMatchComponent {
       }),
       playerStats: this.fb.array([]),
     });
-    this.getPlayers();
-    this.getTeamData();
-    this.getTypesOfMatches();
-  }
-
-  get result() {
-    return this.form.get('result') as FormGroup;
-  }
-  get playerStats(): FormArray {
-    return this.form.get('playerStats') as FormArray;
   }
 
   changeSpecialOptions() {

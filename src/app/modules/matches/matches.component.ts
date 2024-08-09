@@ -1,4 +1,4 @@
-import { Component, Injector } from '@angular/core';
+import { Component, Injector, ViewEncapsulation } from '@angular/core';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { Router } from '@angular/router';
 import { LOCAL_STORAGE } from '../../shared/Constants/local-storage';
@@ -21,7 +21,6 @@ import { get } from 'http';
 import { firstValueFrom } from 'rxjs';
 import { DeleteMatchComponent } from './components/delete-match/delete-match.component';
 import { CreateMatchComponent } from './components/create-match/create-match.component';
-
 @Component({
   selector: 'app-matches',
   standalone: true,
@@ -31,10 +30,11 @@ import { CreateMatchComponent } from './components/create-match/create-match.com
     NavbarComponent,
     CommonModule,
     MatMenuModule,
-    MatIconModule,
+    MatIconModule, 
     FormsModule,
-    CreateMatchComponent
-],
+  ],
+  encapsulation: ViewEncapsulation.Emulated // O ShadowDom
+
 })
 export class MatchesComponent {
   lastSeasonId: number = 0;
@@ -54,7 +54,7 @@ export class MatchesComponent {
     private _matchService: MatchService,
     private _seasonService: SeasonService
 
-  ) {}
+  ) { }
 
   async ngOnInit() {
     await this.getSeasons();
@@ -91,7 +91,7 @@ export class MatchesComponent {
       console.log('ID de equipo no encontrado en almacenamiento local.');
     }
   }
-   getMatches(idSeason: number = 0) {
+  getMatches(idSeason: number = 0) {
     if (idSeason) {
       this._matchService.showMatches(idSeason).subscribe((data: IMatches) => {
         if (data.isSuccess) {
@@ -101,7 +101,7 @@ export class MatchesComponent {
             const dateB = new Date(b.fecha);
             return dateA.getTime() - dateB.getTime();
           });
-                    this.filteredMatches = this.matches;
+          this.filteredMatches = this.matches;
         } else {
           console.log(data.errorMessages);
         }
@@ -128,16 +128,16 @@ export class MatchesComponent {
       this.sortColumn = column;
       this.sortOrder = 'asc';
     }
-  
+
     this.filteredMatches.sort((a, b) => {
       let valueA = a[column] ?? '';
       let valueB = b[column] ?? '';
-  
+
       if (column === 'fecha') {
         // Convertir Date a string si es necesario
         if (valueA instanceof Date) valueA = valueA.toISOString();
         if (valueB instanceof Date) valueB = valueB.toISOString();
-  
+
         // Ahora valueA y valueB son strings y puedes usar localeCompare
         return this.sortOrder === 'asc'
           ? String(valueA).localeCompare(String(valueB))
@@ -174,7 +174,7 @@ export class MatchesComponent {
           match.resultado.toString().includes(this.searchInput) ||
           match.golesContra.toString().includes(this.searchInput) ||
           match.golesFavor.toString().includes(this.searchInput)
-          
+
 
       );
     }
@@ -182,10 +182,10 @@ export class MatchesComponent {
   }
 
 
-  editSeason() {}
+  editSeason() { }
 
 
-   createMatch() {
+  createMatch() {
     const dialogRef = this.dialog.open(CreateMatchComponent, {
       data: {
         seasonId: this.seasonSelectd,
@@ -194,22 +194,22 @@ export class MatchesComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-       this.getMatches(this.seasonSelectd);
+      this.getMatches(this.seasonSelectd);
     });
   }
 
   deleteMatch(rivalName: string, matchId: number) {
 
     const dialogRef = this.dialog.open(DeleteMatchComponent, {
-      data: {rivalName, matchId},
+      data: { rivalName, matchId },
       injector: this.injector,
 
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
+      this.getMatches(this.seasonSelectd);
     });
   }
 
-  editMatch(match: any) {}
+  editMatch(match: any) { }
 }
