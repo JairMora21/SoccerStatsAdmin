@@ -37,6 +37,7 @@ export class NavbarComponent {
           if (this.equipos && this.equipos.length > 0) {
             this.currentTeam = this.equipos[0].nombre;
             localStorage.setItem(LOCAL_STORAGE.TeamId, this.equipos[0].id.toString());
+            localStorage.setItem(LOCAL_STORAGE.TeamBadge, this.equipos[0].escudo);
           }
         }
       },
@@ -49,12 +50,15 @@ export class NavbarComponent {
   changeTeam(team: ResultEquipo) {
     this.currentTeam = team.nombre;
     localStorage.setItem(LOCAL_STORAGE.TeamId, team.id.toString());
+    localStorage.setItem(LOCAL_STORAGE.TeamBadge, team.escudo);
   }
 
   logout() {
     localStorage.removeItem(LOCAL_STORAGE.Token);
     localStorage.removeItem(LOCAL_STORAGE.Refreshtoken);
     localStorage.removeItem(LOCAL_STORAGE.Expiration);
+    localStorage.removeItem(LOCAL_STORAGE.TeamId);
+    localStorage.removeItem(LOCAL_STORAGE.TeamBadge);
     this.router.navigate(['/login']);
 
   }

@@ -3,4 +3,5 @@ export const LOCAL_STORAGE = {
     Refreshtoken: 'refreshToken',
     Expiration: 'expiration',
     TeamId: 'teamId',
+    TeamBadge: 'teamBadge',
   };

@@ -6,6 +6,7 @@ import { environment } from '../../../../../enviroment';
 import { HttpClient } from '@angular/common/http';
 import { ICreateMatch } from '../../../core/models/matches/create-match .model';
 import { IUpdateMatch } from '../../../core/models/matches/update-match.model';
+import { IPartidoStats } from '../../../core/models/matches/view-match.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,10 @@ export class MatchService {
   deleteMatch(matchId: number): Observable<APIResponse> {
     const url = `${this.apiUrl}/Partido/DeletePartido/${matchId}`;
     return this._http.delete<APIResponse>(url);
+  }
+
+  showMatch(matchId: number): Observable<IPartidoStats> {
+    const url = `${this.apiUrl}/Partido/PartidoStats/${matchId}`;
+    return this._http.get<IPartidoStats>(url);
   }
 }

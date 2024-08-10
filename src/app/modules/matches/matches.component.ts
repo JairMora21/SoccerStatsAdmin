@@ -21,6 +21,7 @@ import { get } from 'http';
 import { firstValueFrom } from 'rxjs';
 import { DeleteMatchComponent } from './components/delete-match/delete-match.component';
 import { CreateMatchComponent } from './components/create-match/create-match.component';
+import { ViewMatchComponent } from './components/view-match/view-match.component';
 @Component({
   selector: 'app-matches',
   standalone: true,
@@ -90,6 +91,19 @@ export class MatchesComponent {
     } else {
       console.log('ID de equipo no encontrado en almacenamiento local.');
     }
+  }
+
+  ViewMatch(idMatch: number) { 
+    const dialogRef = this.dialog.open(ViewMatchComponent, {
+      data: {
+        idMatch: idMatch,
+      },
+      injector: this.injector,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.getMatches(this.seasonSelectd);
+    });
   }
   getMatches(idSeason: number = 0) {
     if (idSeason) {
