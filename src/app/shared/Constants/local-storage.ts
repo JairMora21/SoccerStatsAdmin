@@ -4,4 +4,5 @@ export const LOCAL_STORAGE = {
     Expiration: 'expiration',
     TeamId: 'teamId',
     TeamBadge: 'teamBadge',
+    TeamName: 'teamName',
   };

@@ -24,6 +24,7 @@ import { AttributesService } from '../../../../shared/services/attributes.servic
 import { ITypeMatch, ResultTypeMatch } from '../../../../core/models/attributes/type-match.model';
 import { PlayerStats } from '../../../../core/models/matches/create-match .model';
 import { MatchService } from '../../services/match.service';
+import { LocalStorageService } from '../../../../shared/services/local-storage.service';
 
 @Component({
   selector: 'app-create-match',
@@ -57,8 +58,15 @@ export class CreateMatchComponent {
   isSpecialOptions: boolean = false;
   hideSingleSelectionIndicator = signal(false);
 
+  teamId: number = Number(this.localStorageService.getTeamId());
+
   card: string = 'yellow';
-  equipo: ResultEquipo = { id: 0, nombre: '', lugar: '', escudo: '' };
+  equipo: ResultEquipo = {
+    id: Number(this.localStorageService.getTeamId()),
+    nombre: this.localStorageService.getTeamName(),
+    lugar: '',
+    escudo: this.localStorageService.getTeamBadge(),
+  };
 
 
   constructor(private fb: FormBuilder,
@@ -66,16 +74,16 @@ export class CreateMatchComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _teamService: TeamService,
     private _attributesService: AttributesService,
-    private _matchService: MatchService
+    private _matchService: MatchService,
+    private localStorageService: LocalStorageService,
+
 
 
   ) { }
 
   ngOnInit(): void {
-
     this.initForm();
     this.getPlayers();
-    this.getTeamData();
     this.getTypesOfMatches();
   }
 
@@ -86,8 +94,7 @@ export class CreateMatchComponent {
     return this.form.get('playerStats') as FormArray;
   }
 
-  initForm(){
-    const idTeam = Number(localStorage.getItem(LOCAL_STORAGE.TeamId));
+  initForm() {
     this.form = this.fb.group({
       result: this.fb.group({
         NombreRival: ['', Validators.required],
@@ -96,7 +103,7 @@ export class CreateMatchComponent {
         Fecha: ['', Validators.required],
         IdTipoPartido: [1, Validators.required],
         IdTemporada: [this.data.seasonId],
-        IdEquipo: [idTeam],
+        IdEquipo: [this.teamId],
         IdResultado: [0],
       }),
       playerStats: this.fb.array([]),
@@ -121,30 +128,12 @@ export class CreateMatchComponent {
     });
   }
 
-  getTeamData() {
-    const teamId = Number(localStorage.getItem(LOCAL_STORAGE.TeamId));
-    this._teamService.getTeamById(teamId).subscribe({
-      next: (data: any) => {
-        if (data.isSuccess == false) {
-          console.error('Error al obtener equipo', data.errorMessages);
-        } else {
-          console.log(data.result);
-          this.equipo = data.result;
-        }
-      },
-      error: (error) => {
-        console.error('Error al obtener equipo', error);
-      },
-    });
-  }
   onCardChange(value: string) {
     this.card = value;
   }
 
   getPlayers() {
-    const teamId = Number(localStorage.getItem(LOCAL_STORAGE.TeamId));
-
-    this._teamService.getAllPlayers(teamId).subscribe({
+    this._teamService.getAllPlayers(this.teamId).subscribe({
       next: (data: IJugadores) => {
         if (data.isSuccess == false) {
           console.error('Error al obtener jugadores', data.errorMessages);

@@ -7,6 +7,7 @@ import { AuthResponse } from '../models/auth-response.model';
 import { LoginDto } from '../dto/login.dto';
 import { LOCAL_STORAGE } from '../../../shared/Constants/local-storage';
 import { isPlatformBrowser } from '@angular/common';
+import { LocalStorageService } from '../../../shared/services/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient, 
+    private localStorageService: LocalStorageService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
@@ -39,8 +41,8 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     if (isPlatformBrowser(this.platformId)) {
-      const token = localStorage.getItem(LOCAL_STORAGE.Token);
-      const expiration = localStorage.getItem(LOCAL_STORAGE.Expiration);
+      const token = this.localStorageService.getToken();
+      const expiration = this.localStorageService.getExpiration();
       console.log('token', token);
       console.log('expiration', expiration);
 

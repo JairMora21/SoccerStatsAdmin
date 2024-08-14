@@ -7,6 +7,7 @@ import { AuthResponse } from './models/auth-response.model';
 import { Router } from '@angular/router'; 
 import { LOCAL_STORAGE } from '../../shared/Constants/local-storage';
 import { isPlatformBrowser } from '@angular/common';
+import { LocalStorageService } from '../../shared/services/local-storage.service';
 
 @Component({
   selector: 'app-auth',
@@ -21,6 +22,7 @@ export class AuthComponent {
 
   constructor(
     private authService: AuthService, 
+    private localStorageService: LocalStorageService,
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
@@ -35,9 +37,9 @@ export class AuthComponent {
       (response: AuthResponse) => {
         if (response.resultado) {
           if (isPlatformBrowser(this.platformId)) {
-            localStorage.setItem(LOCAL_STORAGE.Token, response.token!);  
-            localStorage.setItem(LOCAL_STORAGE.Refreshtoken, response.refreshToken!);
-            localStorage.setItem(LOCAL_STORAGE.Expiration, response.expiration!);
+            this.localStorageService.setToken(response.token!);
+            this.localStorageService.setRefreshtoken(response.refreshToken!);
+            this.localStorageService.setExpiration(response.expiration!);
           }
           this.router.navigate(['/main']);
         } else {

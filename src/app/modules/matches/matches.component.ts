@@ -23,6 +23,7 @@ import { DeleteMatchComponent } from './components/delete-match/delete-match.com
 import { CreateMatchComponent } from './components/create-match/create-match.component';
 import { ViewMatchComponent } from './components/view-match/view-match.component';
 import { EditMatchComponent } from './components/edit-match/edit-match.component';
+import { LocalStorageService } from '../../shared/services/local-storage.service';
 @Component({
   selector: 'app-matches',
   standalone: true,
@@ -54,7 +55,9 @@ export class MatchesComponent {
     private injector: Injector,
     private dialog: MatDialog,
     private _matchService: MatchService,
-    private _seasonService: SeasonService
+    private _seasonService: SeasonService,
+    private localStorageService: LocalStorageService,
+
 
   ) { }
 
@@ -69,7 +72,7 @@ export class MatchesComponent {
   }
 
   async getSeasons() {
-    const idTeam = localStorage.getItem(LOCAL_STORAGE.TeamId);
+    const idTeam = this.localStorageService.getTeamId();
     if (idTeam) {
       try {
         const data: ResultTemporadas = await firstValueFrom(

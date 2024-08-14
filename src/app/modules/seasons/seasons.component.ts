@@ -16,6 +16,7 @@ import { CreateSeasonComponent } from './components/create-season/create-season.
 import { UpdateSeasonComponent } from './components/update-season/update-season.component';
 import { DeleteSeasonComponent } from './components/delete-season/delete-season.component';
 import { DeleteMatch } from '../matches/models/match-delete.model';
+import { LocalStorageService } from '../../shared/services/local-storage.service';
 
 @Component({
   selector: 'app-seasons',
@@ -42,7 +43,7 @@ export class SeasonsComponent {
     private injector: Injector,
     private router: Router,
     private dialog: MatDialog,
-    private _seasonService: SeasonService
+    private _seasonService: SeasonService,
   ) {}
 
   ngOnInit() {

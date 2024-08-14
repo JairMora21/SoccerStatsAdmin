@@ -25,6 +25,7 @@ import { MatchService } from '../../services/match.service';
 import { AttributesService } from '../../../../shared/services/attributes.service';
 import { LOCAL_STORAGE } from '../../../../shared/Constants/local-storage';
 import { TeamService } from '../../../team/services/team.service';
+import { LocalStorageService } from '../../../../shared/services/local-storage.service';
 
 @Component({
   selector: 'app-edit-match',
@@ -64,8 +65,13 @@ export class EditMatchComponent {
   hideSingleSelectionIndicator = signal(false);
 
   card: string = 'yellow';
-  equipo: ResultEquipo = { id: 0, nombre: '', lugar: '', escudo: '' };
-
+  teamId: number = Number(this.localStorageService.getTeamId());
+  equipo: ResultEquipo = {
+    id: this.teamId,
+    nombre: this.localStorageService.getTeamName(),
+    lugar: '',
+    escudo: this.localStorageService.getTeamBadge(),
+  };
   partidoStats: ResultStats = {} as ResultStats;
 
 
@@ -75,6 +81,8 @@ export class EditMatchComponent {
     private _attributesService: AttributesService,
     private _teamService: TeamService,
     private fb: FormBuilder,
+    private localStorageService: LocalStorageService,
+
     @Inject(MAT_DIALOG_DATA) public data: { idMatch: number, seasonId: number },
 
 
@@ -82,7 +90,6 @@ export class EditMatchComponent {
 
   async ngOnInit(): Promise<void> {
 
-    this.setTeamInfo(); 
     this.getPlayers();
     this.getTypesOfMatches();
     await this.obtenerPartidoStats(this.data.idMatch);
@@ -97,15 +104,6 @@ export class EditMatchComponent {
     } else {
       console.error('Datos de partido no disponibles');
     }
-  }
-
-  setTeamInfo() {
-    this.equipo = {
-      id: Number(localStorage.getItem(LOCAL_STORAGE.TeamId)),
-      nombre: localStorage.getItem(LOCAL_STORAGE.TeamName) || '',
-      lugar: '',
-      escudo: localStorage.getItem(LOCAL_STORAGE.TeamBadge) || '',
-    };
   }
 
   transformPlayerStats(players: ResultStats): PlayerStats[] {
@@ -157,7 +155,7 @@ export class EditMatchComponent {
         Fecha: new FormControl(this.partidoStats.datosPartido.fecha, [Validators.required]),
         IdResultado: new FormControl(this.partidoStats.datosPartido.resultado, [Validators.required]),
         IdTemporada: new FormControl(this.data.seasonId, [Validators.required]),
-        IdEquipo: new FormControl(Number(localStorage.getItem(LOCAL_STORAGE.TeamId)), [Validators.required]),
+        IdEquipo: new FormControl(this.teamId, [Validators.required]),
       }),
       playerStats: new FormArray([]),
     });
@@ -184,9 +182,7 @@ export class EditMatchComponent {
   }
 
   getPlayers() {
-    const teamId = Number(localStorage.getItem(LOCAL_STORAGE.TeamId));
-
-    this._teamService.getAllPlayers(teamId).subscribe({
+    this._teamService.getAllPlayers(this.teamId).subscribe({
       next: (data: IJugadores) => {
         if (data.isSuccess == false) {
           console.error('Error al obtener jugadores', data.errorMessages);

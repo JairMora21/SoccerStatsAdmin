@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { LOCAL_STORAGE } from '../../../../shared/Constants/local-storage';
 import { firstValueFrom } from 'rxjs';
+import { LocalStorageService } from '../../../../shared/services/local-storage.service';
 
 @Component({
   selector: 'app-view-match',
@@ -17,11 +18,12 @@ export class ViewMatchComponent {
 
   partidoStats: ResultStats = {} as ResultStats;
   fechaFormat: string = '';
-  urlEscudo: string | null = localStorage.getItem(LOCAL_STORAGE.TeamId);
+  urlEscudo: string | null = this.localStorageService.getTeamBadge();
 
   constructor(
     public dialogRef: MatDialogRef<ViewMatchComponent>,
     private _matchService: MatchService,
+    private localStorageService: LocalStorageService,
     @Inject(MAT_DIALOG_DATA) public data: { idMatch: number },
 
   ) { }
