@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 
 @Component({
@@ -21,7 +22,11 @@ export class NavbarComponent {
   currentTeam: string = '';
   @Input() isTeamSelected: boolean = false;
 
-  constructor(private _teamService: TeamService, private router: Router) {}
+  constructor(
+    private _teamService: TeamService, 
+    private router: Router,
+    private localStorageService: LocalStorageService,
+  ) {}
 
   ngOnInit(): void {
     this.getAllTeams();
@@ -36,8 +41,9 @@ export class NavbarComponent {
           this.equipos = data.result;
           if (this.equipos && this.equipos.length > 0) {
             this.currentTeam = this.equipos[0].nombre;
-            localStorage.setItem(LOCAL_STORAGE.TeamId, this.equipos[0].id.toString());
-            localStorage.setItem(LOCAL_STORAGE.TeamBadge, this.equipos[0].escudo);
+            this.localStorageService.setTeamId(this.equipos[0].id.toString());
+            this.localStorageService.setTeamBadge(this.equipos[0].escudo);
+            this.localStorageService.setTeamName(this.equipos[0].nombre);
           }
         }
       },
@@ -49,8 +55,9 @@ export class NavbarComponent {
 
   changeTeam(team: ResultEquipo) {
     this.currentTeam = team.nombre;
-    localStorage.setItem(LOCAL_STORAGE.TeamId, team.id.toString());
-    localStorage.setItem(LOCAL_STORAGE.TeamBadge, team.escudo);
+    this.localStorageService.setTeamId(team.id.toString());
+    this.localStorageService.setTeamBadge(team.escudo);
+    this.localStorageService.setTeamName(team.nombre);
   }
 
   logout() {

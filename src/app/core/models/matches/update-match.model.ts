@@ -1,11 +1,13 @@
-export interface IUpdateMatch {
-    idEquipo: number ;
-    idTemporada: number ;
-    idTipoPartido: number;
-    idResultado: number;
-    fecha: Date;
-    nombreRival: string;
-    golesFavor: number;
-    golesContra: number;
-  }
-  
+import { ICreateMatch, PlayerStats, Result } from "./create-match .model";
+
+export interface IUpdateMatch extends ICreateMatch{
+
+}
+
+
+
+export interface ResultMatchUpdate extends Result{
+}
+
+export interface PlayerStatsUpdate extends PlayerStats{
+}

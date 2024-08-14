@@ -29,7 +29,6 @@ export class ViewMatchComponent {
 
 
   async ngOnInit(): Promise<void> {
-    console.log(this.data.idMatch);
     await this.obtenerPartidoStats(this.data.idMatch);  
   }
 

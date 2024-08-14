@@ -1,6 +1,6 @@
 export interface ICreateMatch {
-  result: Result;
-  playerStats: PlayerStats[];
+  Result: Result;
+  PlayerStats: PlayerStats[];
 }
 
 
@@ -16,10 +16,10 @@ export interface Result {
 }
 
 export interface PlayerStats {
-  id: number;
-  nombre: string;
-  dorsal: string;
-  goles: number;
-  amarillas: number;
-  rojas: number;
+  Id: number;
+  Nombre: string;
+  Dorsal: string;
+  Goles: number;
+  Amarillas: number;
+  Rojas: number;
 }

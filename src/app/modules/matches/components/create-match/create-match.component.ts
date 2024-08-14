@@ -48,8 +48,8 @@ export class CreateMatchComponent {
   selectedParticipatePlayersId: number[] = [];
   selectedParticipatePlayers: PlayerStats[] = [];
   defaultGoals: PlayerStats[] = [
-    { id: 0, nombre: 'Autogol', dorsal: '', goles: 0, amarillas: 0, rojas: 0 },
-    { id: 0, nombre: 'Invitado', dorsal: '', goles: 0, amarillas: 0, rojas: 0 }
+    { Id: 0, Nombre: 'Autogol', Dorsal: '', Goles: 0, Amarillas: 0, Rojas: 0 },
+    { Id: 0, Nombre: 'Invitado', Dorsal: '', Goles: 0, Amarillas: 0, Rojas: 0 }
 
   ];
 
@@ -165,7 +165,14 @@ export class CreateMatchComponent {
 
     this.selectedParticipatePlayers = this.players
       .filter(player => selectedPlayerIds.includes(player.id))
-      .map(player => ({ id: player.id, nombre: player.nombre, dorsal: player.dorsal, goles: 0, amarillas: 0, rojas: 0 }));
+      .map(player => ({
+        Id: player.id,
+        Nombre: player.nombre,
+        Dorsal: player.dorsal,
+        Goles: 0,
+        Amarillas: 0,
+        Rojas: 0
+      }));
 
     this.selectedParticipatePlayersId = selectedPlayerIds;
 
@@ -174,8 +181,6 @@ export class CreateMatchComponent {
   }
 
   navigate(direction: number) {
-    console.log('selectedParticipatePlayersId:', this.selectedParticipatePlayersId);
-
     if (direction == 1) {
       if (this.form.get('result')?.invalid) {
         this.form.markAllAsTouched();
@@ -194,8 +199,8 @@ export class CreateMatchComponent {
   }
 
   addGoal(player: PlayerStats) {
-    const totalGoalsPlayers = this.selectedParticipatePlayers.reduce((acc, player) => acc + player.goles, 0);
-    const totalGoalsDefault = this.defaultGoals.reduce((acc, player) => acc + player.goles, 0);
+    const totalGoalsPlayers = this.selectedParticipatePlayers.reduce((acc, player) => acc + player.Goles, 0);
+    const totalGoalsDefault = this.defaultGoals.reduce((acc, player) => acc + player.Goles, 0);
     const totalGoals = totalGoalsPlayers + totalGoalsDefault;
     const goalsInMatch = this.form.get('result.GolesFavor')?.value;
     if (totalGoals >= goalsInMatch) {
@@ -203,60 +208,60 @@ export class CreateMatchComponent {
       return;
     }
     this.isMoreThanTotalGoals = false;
-    player.goles += 1;
+    player.Goles += 1;
     console.log(this.selectedParticipatePlayers);
   }
 
   removeGoal(player: PlayerStats) {
     this.isMoreThanTotalGoals = false;
-    if (player.goles > 0) {
-      player.goles -= 1;
+    if (player.Goles > 0) {
+      player.Goles -= 1;
     }
     console.log(this.selectedParticipatePlayers);
   }
 
   addCard(player: PlayerStats, cardType: string) {
-    console.log('adding card to player:', player.nombre);
+    console.log('adding card to player:', player.Nombre);
     console.log('Card type:', cardType);
     if (cardType == 'yellow') {
-      player.amarillas += 1;
+      player.Amarillas += 1;
     } else {
-      player.rojas += 1;
+      player.Rojas += 1;
     }
   }
 
   removeCard(player: PlayerStats, cardType: string) {
-    console.log('removin card to player:', player.nombre);
+    console.log('removin card to player:', player.Nombre);
     console.log('Card type:', cardType);
     if (cardType == 'yellow') {
-      if (player.amarillas > 0) {
-        player.amarillas -= 1;
+      if (player.Amarillas > 0) {
+        player.Amarillas -= 1;
       }
     } else {
-      if (player.rojas > 0) {
-        player.rojas -= 1;
+      if (player.Rojas > 0) {
+        player.Rojas -= 1;
       }
     }
   }
 
 
   getPlayersWithGoals(): PlayerStats[] {
-    const defaultPlayers = this.defaultGoals.filter(player => player.goles > 0);
-    const players = this.selectedParticipatePlayers.filter(player => player.goles > 0)
+    const defaultPlayers = this.defaultGoals.filter(player => player.Goles > 0);
+    const players = this.selectedParticipatePlayers.filter(player => player.Goles > 0)
 
-    return [...defaultPlayers, ...players].sort((a, b) => b.goles - a.goles);
+    return [...defaultPlayers, ...players].sort((a, b) => b.Goles - a.Goles);
   }
 
   getPlayersWithYellowCards(): PlayerStats[] {
-    return this.selectedParticipatePlayers.filter(player => player.amarillas > 0);
+    return this.selectedParticipatePlayers.filter(player => player.Amarillas > 0);
   }
 
   getPlayersWithRedCards(): PlayerStats[] {
-    return this.selectedParticipatePlayers.filter(player => player.rojas > 0);
+    return this.selectedParticipatePlayers.filter(player => player.Rojas > 0);
   }
 
   isAnyPlayerCautioned(): boolean {
-    return this.selectedParticipatePlayers.some(player => player.amarillas > 0 || player.rojas > 0);
+    return this.selectedParticipatePlayers.some(player => player.Amarillas > 0 || player.Rojas > 0);
   }
 
   getResultId(goalsAgainst: number, goalsFor: number): number {
@@ -275,7 +280,7 @@ export class CreateMatchComponent {
     console.log(this.form.value);
 
     if (this.form.valid) {
-      const defaultPlayers = this.defaultGoals.filter(player => player.goles > 0);
+      const defaultPlayers = this.defaultGoals.filter(player => player.Goles > 0);
       this.selectedParticipatePlayers = [...defaultPlayers, ...this.selectedParticipatePlayers];
       this.selectedParticipatePlayers.forEach(player => {
         this.playerStats.push(this.fb.group(player));

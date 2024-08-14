@@ -22,6 +22,7 @@ import { firstValueFrom } from 'rxjs';
 import { DeleteMatchComponent } from './components/delete-match/delete-match.component';
 import { CreateMatchComponent } from './components/create-match/create-match.component';
 import { ViewMatchComponent } from './components/view-match/view-match.component';
+import { EditMatchComponent } from './components/edit-match/edit-match.component';
 @Component({
   selector: 'app-matches',
   standalone: true,
@@ -196,7 +197,20 @@ export class MatchesComponent {
   }
 
 
-  editSeason() { }
+  editMatch(idMatch: number) {
+    console.log('Editando partido:', idMatch);
+    const dialogRef = this.dialog.open(EditMatchComponent, {
+      data: {
+        idMatch: idMatch,
+        seasonId: this.seasonSelectd,
+      },
+      injector: this.injector,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.getMatches(this.seasonSelectd);
+    });
+   }
 
 
   createMatch() {
@@ -225,5 +239,4 @@ export class MatchesComponent {
     });
   }
 
-  editMatch(match: any) { }
 }

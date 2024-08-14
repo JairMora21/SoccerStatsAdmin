@@ -95,14 +95,14 @@
                             <div *ngIf="!isSpecialOptions">
                                 <div *ngFor="let player of selectedParticipatePlayers"
                                     class="flex items-center justify-between mb-2 bg-gray-800 p-4 rounded-lg shadow-md">
-                                    <span class="text-white text-lg">{{ player.nombre }}</span>
+                                    <span class="text-white text-lg">{{ player.Nombre }}</span>
                                     <div class="flex items-center">
                                         <button type="button" (click)="removeGoal(player)"
                                             class="bg-red-500 text-white px-3 py-1 rounded-l-md hover:bg-red-600 transition-colors focus:outline-none focus:ring-2 focus:ring-red-400">
                                             -
                                         </button>
                                         <span
-                                            class="bg-gray-200 text-lg px-4 py-2 mx-1 rounded-md">{{player.goles}}</span>
+                                            class="bg-gray-200 text-lg px-4 py-2 mx-1 rounded-md">{{player.Goles}}</span>
                                         <button type="button" (click)="addGoal(player)"
                                             class="bg-green-500 text-white px-3 py-1 rounded-r-md hover:bg-green-600 transition-colors focus:outline-none focus:ring-2 focus:ring-green-400">
                                             +
@@ -114,14 +114,14 @@
                             <div *ngIf="isSpecialOptions">
                                 <div *ngFor="let player of defaultGoals"
                                     class="flex items-center justify-between mb-2 bg-gray-800 p-4 rounded-lg shadow-md">
-                                    <span class="text-white text-lg">{{ player.nombre }}</span>
+                                    <span class="text-white text-lg">{{ player.Nombre }}</span>
                                     <div class="flex items-center">
                                         <button type="button" (click)="removeGoal(player)"
                                             class="bg-red-500 text-white px-3 py-1 rounded-l-md hover:bg-red-600 transition-colors focus:outline-none focus:ring-2 focus:ring-red-400">
                                             -
                                         </button>
                                         <span
-                                            class="bg-gray-200 text-lg px-4 py-2 mx-1 rounded-md">{{player.goles}}</span>
+                                            class="bg-gray-200 text-lg px-4 py-2 mx-1 rounded-md">{{player.Goles}}</span>
                                         <button type="button" (click)="addGoal(player)"
                                             class="bg-green-500 text-white px-3 py-1 rounded-r-md hover:bg-green-600 transition-colors focus:outline-none focus:ring-2 focus:ring-green-400">
                                             +
@@ -154,14 +154,14 @@
                         <div *ngIf="card == 'yellow'">
                             <div *ngFor="let player of selectedParticipatePlayers"
                                 class="flex items-center justify-between mb-2 bg-gray-800 p-4 rounded-lg shadow-md">
-                                <span class="text-white text-lg">{{ player.nombre }}</span>
+                                <span class="text-white text-lg">{{ player.Nombre }}</span>
                                 <div class="flex items-center">
                                     <button type="button" (click)="removeCard(player, card)"
                                         class="bg-red-500 text-white px-3 py-1 rounded-l-md hover:bg-red-600 transition-colors focus:outline-none focus:ring-2 focus:ring-red-400">
                                         -
                                     </button>
                                     <span class="bg-gray-200 text-lg px-4 py-2 mx-1 rounded-md text-center w-12">
-                                        {{ player.amarillas }}
+                                        {{ player.Amarillas }}
                                     </span>
                                     <button type="button" (click)="addCard(player, card)"
                                         class="bg-green-500 text-white px-3 py-1 rounded-r-md hover:bg-green-600 transition-colors focus:outline-none focus:ring-2 focus:ring-green-400">
@@ -174,14 +174,14 @@
                         <div *ngIf="card == 'red'">
                             <div *ngFor="let player of selectedParticipatePlayers"
                                 class="flex items-center justify-between mb-2 bg-gray-800 p-4 rounded-lg shadow-md">
-                                <span class="text-white text-lg">{{ player.nombre }}</span>
+                                <span class="text-white text-lg">{{ player.Nombre }}</span>
                                 <div class="flex items-center">
                                     <button type="button" (click)="removeCard(player, card)"
                                         class="bg-red-500 text-white px-3 py-1 rounded-l-md hover:bg-red-600 transition-colors focus:outline-none focus:ring-2 focus:ring-red-400">
                                         -
                                     </button>
                                     <span class="bg-gray-200 text-lg px-4 py-2 mx-1 rounded-md text-center w-12">
-                                        {{ player.rojas }}
+                                        {{ player.Rojas }}
                                     </span>
                                     <button type="button" (click)="addCard(player, card)"
                                         class="bg-green-500 text-white px-3 py-1 rounded-r-md hover:bg-green-600 transition-colors focus:outline-none focus:ring-2 focus:ring-green-400">
@@ -231,8 +231,8 @@
                         <h4 class="game-events text-gray-200">Goles</h4>
                         <div *ngFor="let player of getPlayersWithGoals()" class="flex mx-1 items-center">
                             <div class="mx-1 text-green-500"><i class="fa-solid fa-futbol"></i></div>
-                            <div class="mx-1 text-white">{{ player.nombre }}</div>
-                            <div class="text-white">x{{ player.goles }}</div>
+                            <div class="mx-1 text-white">{{ player.Nombre }}</div>
+                            <div class="text-white">x{{ player.Goles }}</div>
                         </div>
                     </div>
 
@@ -240,12 +240,12 @@
                         <h4 class="game-events text-gray-200">Amonestados</h4>
                         <div *ngFor="let player of getPlayersWithRedCards()" class="flex mx-1 items-center">
                             <div class="mx-1 text-red-500"><i class="fa-duotone fa-sd-card"></i></div>
-                            <div class="mx-1 text-white">{{ player.nombre }}</div>
+                            <div class="mx-1 text-white">{{ player.Nombre }}</div>
                         </div>
                         <div *ngFor="let player of getPlayersWithYellowCards()" class="flex mx-1 items-center">
                             <div class="mx-1 text-yellow-500"><i class="fa-duotone fa-sd-card"></i></div>
-                            <div class="mx-1 text-white">{{ player.nombre }}</div>
-                            <div class="text-white">x{{ player.amarillas }}</div>
+                            <div class="mx-1 text-white">{{ player.Nombre }}</div>
+                            <div class="text-white">x{{ player.Amarillas }}</div>
                         </div>
                     </div>
 
@@ -253,8 +253,8 @@
                         <h4 class="game-events text-gray-300">Participantes</h4>
                         <div *ngFor="let player of selectedParticipatePlayers" class="flex mx-1 items-center">
                             <div class="mx-1 text-yellow-500"><i class="fa-solid fa-circle-user mt-1"></i></div>
-                            <div class="mx-1 text-gray-300">({{player.dorsal}})</div>
-                            <div class="text-gray-300">{{player.nombre}}</div>
+                            <div class="mx-1 text-gray-300">({{player.Dorsal}})</div>
+                            <div class="text-gray-300">{{player.Nombre}}</div>
                         </div>
                     </div>
 

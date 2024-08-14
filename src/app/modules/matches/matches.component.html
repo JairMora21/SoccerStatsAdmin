@@ -117,7 +117,7 @@
                                     <ng-template matMenuContent>
                                         <button mat-menu-item
                                             (click)="deleteMatch(match.nombreRival, match.id)">Eliminar</button>
-                                        <button mat-menu-item (click)="editMatch(match)">Editar</button>
+                                        <button mat-menu-item (click)="editMatch(match.id)">Editar</button>
                                     </ng-template>
                                 </mat-menu>
                                 <button mat-icon-button [matMenuTriggerFor]="appMenu">

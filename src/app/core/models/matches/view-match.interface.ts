@@ -27,17 +27,20 @@
   }
   
   export interface Goleadores {
+    id:       number;
     nombre:   string;
     cantidad: number;
   }
   
   export interface Participante {
+    id:     number;
     nombre: string;
     dorsal: string;
   
   }
   
   export interface Tarjeta {
+    id:            number;
     nombre:        string;
     tarjeta:       string;
     idTipoTarjeta: number;
