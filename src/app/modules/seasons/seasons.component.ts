@@ -17,6 +17,7 @@ import { UpdateSeasonComponent } from './components/update-season/update-season.
 import { DeleteSeasonComponent } from './components/delete-season/delete-season.component';
 import { DeleteMatch } from '../matches/models/match-delete.model';
 import { LocalStorageService } from '../../shared/services/local-storage.service';
+import { DeleteSeason } from './Models/delete-season.model';
 
 @Component({
   selector: 'app-seasons',
@@ -128,9 +129,9 @@ export class SeasonsComponent {
     });
   }
 
-  deleteSeason(matchName: string, matchId: number) {
+  deleteSeason(seasonName: string, seasonId: number) {
     const dialogRef = this.dialog.open(DeleteSeasonComponent, {
-      data: { matchId: matchId, rivalName: matchName} as DeleteMatch,
+      data: { seasonId: seasonId, seasonName: seasonName} as DeleteSeason,
       injector: this.injector,
     }); 
 

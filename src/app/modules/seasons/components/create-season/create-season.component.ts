@@ -54,7 +54,9 @@ export class CreateSeasonComponent {
     const newSeason: ITemporadaCreate = {
       idEquipo: Number(localStorage.getItem(LOCAL_STORAGE.TeamId)),
       nombreTemporada: this.seasonForm.value.nombreTemporada,
-      fechaInicio: this.seasonForm.value.fechaInicio.toISOString().split('T')[0],
+      fechaInicio: this.seasonForm.value.fechaInicio instanceof Date ?
+                    this.seasonForm.value.fechaInicio.toISOString().split('T')[0] :
+                    this.seasonForm.value.fechaInicio,
       noTemporada: this.seasonForm.value.noTemporada
     }
 

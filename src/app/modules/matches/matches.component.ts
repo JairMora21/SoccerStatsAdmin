@@ -81,7 +81,8 @@ export class MatchesComponent {
         if (data.isSuccess) {
           this.seasons = data.result;
           if (this.seasons.length > 0) {
-            const lastSeason = this.seasons[this.seasons.length - 1];
+            console.log('Temporadas:', this.seasons);
+            const lastSeason = this.seasons[0];
             this.seasonSelectd = lastSeason.id;
           } else {
             console.log('No hay temporadas disponibles.');

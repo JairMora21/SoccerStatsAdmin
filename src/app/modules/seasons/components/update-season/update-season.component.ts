@@ -21,8 +21,8 @@ import { ITemporada } from '../../../../core/models/seasons/season.model';
 @Component({
   selector: 'app-update-season',
   standalone: true,
-  imports: [ CommonModule, 
-    FormsModule, 
+  imports: [CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     MatDatepickerModule,
     MatFormFieldModule,
@@ -35,19 +35,19 @@ export class UpdateSeasonComponent {
 
   clasificationes: ResultClasification[] = [];
   seasonForm: FormGroup = new FormGroup({});
-  attemptedSubmit = false;  
+  attemptedSubmit = false;
   idClasificacion: number = 0;
 
   constructor(
     public dialogRef: MatDialogRef<UpdateSeasonComponent>,
-    public _seasonService: SeasonService, 
+    public _seasonService: SeasonService,
     private _attributesService: AttributesService,
     @Inject(MAT_DIALOG_DATA) public season: ITemporada
   ) { }
 
   ngOnInit(): void {
     console.log(this.season);
-    
+
     this.getClasificacion();
     this.initForm();
   }
@@ -57,15 +57,16 @@ export class UpdateSeasonComponent {
       nombreTemporada: new FormControl(this.season.nombreTemporada, [Validators.required]),
       fechaInicio: new FormControl(this.season.fechaInicio, [Validators.required]),
       noTemporada: new FormControl(this.season.noTemporada, [Validators.required]),
-      fechaFinal: new FormControl(this.season.fechaFinal ?? ''), 
-      posicion: new FormControl(this.season.posicion ?? ''), 
-      idClasificacion: new FormControl(this.season.idClasificacion)
+      fechaFinal: new FormControl(this.season.fechaFinal || null),
+      posicion: new FormControl(this.season.posicion || null),
+      clasificacion: new FormControl(this.season.idClasificacion || null)
     });
   }
+  
 
   getClasificacion() {
     this._attributesService.getClassifications().subscribe({
-      next: (data : IClasification) => {
+      next: (data: IClasification) => {
         if (data.isSuccess == false) {
           console.error('Error al obtener clasification:', data.errorMessages);
         } else {
@@ -86,34 +87,38 @@ export class UpdateSeasonComponent {
     this.attemptedSubmit = true;
     console.log(this.seasonForm.value);
 
-    if(this.seasonForm.value.fechaFinal == '') {}
+    if (this.seasonForm.value.fechaFinal == '') { }
 
     const newSeason: ITemporadsUpdate = {
       idEquipo: Number(localStorage.getItem(LOCAL_STORAGE.TeamId)),
       nombreTemporada: this.seasonForm.value.nombreTemporada,
       fechaInicio: this.seasonForm.value.fechaInicio instanceof Date ?
-                    this.seasonForm.value.fechaInicio.toISOString().split('T')[0] :
-                    this.seasonForm.value.fechaInicio,
+        this.seasonForm.value.fechaInicio.toISOString().split('T')[0] :
+        this.seasonForm.value.fechaInicio,
       noTemporada: this.seasonForm.value.noTemporada,
       fechaFinal: this.seasonForm.value.fechaFinal instanceof Date ?
-                  this.seasonForm.value.fechaFinal.toISOString().split('T')[0] :
-                  this.seasonForm.value.fechaFinal,
+        this.seasonForm.value.fechaFinal.toISOString().split('T')[0] :
+        this.seasonForm.value.fechaFinal,
       posicion: this.seasonForm.value.posicion,
-      idClasificacion: this.seasonForm.value.idClasificacion
-  };
-  
-  
-  console.log(newSeason);
-  
+      idClasificacion: this.seasonForm.value.clasificacion
+    };
+
 
     console.log(newSeason);
-    
-    
+
+
+
     if (this.seasonForm.invalid) {
-      return;
+  // Recorre todos los controles del formulario para ver sus errores
+  Object.keys(this.seasonForm.controls).forEach(key => {
+    const controlErrors = this.seasonForm.get(key)?.errors;
+    if (controlErrors) {
+      console.log(`Control: ${key}, Errors:`, controlErrors);
+    }
+  });      return;
     }
 
-    this._seasonService.updateSeason(this.season.id,newSeason).subscribe({
+    this._seasonService.updateSeason(this.season.id, newSeason).subscribe({
       next: (data) => {
         console.log(data);
         this.dialogRef.close();
@@ -125,14 +130,14 @@ export class UpdateSeasonComponent {
 
   }
 
-  
+
   convertDateToISOString(dateString: string): string {
     const date = new Date(dateString);
     date.setHours(0, 0, 0, 0);
     const isoString = date.toISOString();
 
     return isoString;
-}
+  }
 
 }
 

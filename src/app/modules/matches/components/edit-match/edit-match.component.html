@@ -147,7 +147,7 @@
 
                 <div *ngIf="currentViewIndex === 4">
                     <div *ngIf="selectedParticipatePlayers.length != 0" class="p-4">
-                        <mat-button-toggle-group value="yellow" (change)="onCardChange($event.value)" aria-label=""
+                        <mat-button-toggle-group [value]="card ? card : 'yellow'"  (change)="onCardChange($event.value)" aria-label=""
                             class="mb-3">
                             <mat-button-toggle value="yellow">Amarillas</mat-button-toggle>
                             <mat-button-toggle value="red">Rojas</mat-button-toggle>

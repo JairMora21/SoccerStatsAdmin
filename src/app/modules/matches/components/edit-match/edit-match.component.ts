@@ -256,7 +256,6 @@ export class EditMatchComponent {
       this.form.get('result.IdResultado')?.setValue(resultId);
 
       
-      //recordar para mañana: al quitar un jugador se debera removerlo de la lista quitando todas sus estadisticas 
 
       this._matchService.editMatch(this.form.value, this.data.idMatch).subscribe({
         next: (data: any) => {

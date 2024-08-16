@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SeasonService } from '../../services/season.service';
 import { APIResponse } from '../../../../core/models/api-response.model';
 import { CommonModule } from '@angular/common';
+import { DeleteSeason } from '../../Models/delete-season.model';
 
 
 @Component({
@@ -21,10 +22,11 @@ export class DeleteSeasonComponent {
   constructor(
     public dialogRef: MatDialogRef<DeleteSeasonComponent>,
     private _seasonService: SeasonService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: DeleteSeason
   ) { }
 
   ngOnInit(): void {
+    console.log('Data:', this.data);
     this.seasonName = this.data.seasonName;    
   }
 
