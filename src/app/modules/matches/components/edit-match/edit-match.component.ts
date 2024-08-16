@@ -7,7 +7,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatSelectModule } from '@angular/material/select';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { CardsComponent } from '../create-match/steps/cards/cards.component';
 import { GoalsComponent } from '../create-match/steps/goals/goals.component';
@@ -242,10 +242,21 @@ export class EditMatchComponent {
     if (this.form.valid) {
       console.log('Formulario:', this.form.value);
 
+      const defaultPlayers = this.defaultGoals.filter(player => player.Goles > 0);
+      this.selectedParticipatePlayers = [...defaultPlayers, ...this.selectedParticipatePlayers];
+      this.selectedParticipatePlayers.forEach(player => {
+        this.playerStats.push(this.fb.group(player));
+      });
+      console.log('Formulario:', this.form.value);
+
+
       const goalsAgainst = this.form.get('result.GolesContra')?.value;
       const goalsFor = this.form.get('result.GolesFavor')?.value;
       const resultId = this.getResultId(goalsAgainst, goalsFor);
       this.form.get('result.IdResultado')?.setValue(resultId);
+
+      
+      //recordar para mañana: al quitar un jugador se debera removerlo de la lista quitando todas sus estadisticas 
 
       this._matchService.editMatch(this.form.value, this.data.idMatch).subscribe({
         next: (data: any) => {
@@ -329,8 +340,30 @@ export class EditMatchComponent {
     return 1;
   }
 
-  onPlayerSelectionChange(event: any) {
+  onPlayerSelectionChange(event: MatSelectChange) {
+    const selectedValue = event.value;
+    const previouslySelected = this.selectedParticipatePlayersId;
 
+    if(selectedValue.length > previouslySelected.length){
+      const newPlayer = selectedValue.filter((id: number) => !previouslySelected.includes(id));
+      const player = this.players.find((player) => player.id === newPlayer[0]);
+      if (player) {
+        this.selectedParticipatePlayers.push({
+          Id: player.id,
+          Nombre: player.nombre,
+          Dorsal: player.dorsal,
+          Goles: 0,
+          Amarillas: 0,
+          Rojas: 0
+        });
+      }
+    }
+    else{
+      const removedPlayer = previouslySelected.filter((id: number) => !selectedValue.includes(id));
+      const playerIndex = this.selectedParticipatePlayers.findIndex((player) => player.Id === removedPlayer[0]);
+      this.selectedParticipatePlayers.splice(playerIndex, 1);
+    }
+    this.selectedParticipatePlayersId = selectedValue;
   }
   closeDialog() {
     this.dialogRef.close();
