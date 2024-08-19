@@ -43,8 +43,6 @@ export class AuthService {
     if (isPlatformBrowser(this.platformId)) {
       const token = this.localStorageService.getToken();
       const expiration = this.localStorageService.getExpiration();
-      console.log('token', token);
-      console.log('expiration', expiration);
 
       if (!token || !expiration) {
         return false;

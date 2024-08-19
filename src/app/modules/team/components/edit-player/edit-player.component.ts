@@ -76,7 +76,6 @@ export class EditPlayerComponent {
       this.attemptedSubmit = true;
       return;
     }
-    console.log(this.playerForm.value);
 
     const playerToUpdate: IUpdatePlayer = {
       Nombre: this.playerForm.value.nombre,
@@ -93,8 +92,6 @@ export class EditPlayerComponent {
         if (data.isSuccess == false) {
           console.error('Error al actualizar jugador', data.errorMessages);
         } else {
-          console.log('Jugador actualizado');
-          console.log(data.result);
           
           
           this.dialogRef.close();

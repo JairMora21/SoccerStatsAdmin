@@ -46,7 +46,6 @@ export class UpdateSeasonComponent {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.season);
 
     this.getClasificacion();
     this.initForm();
@@ -85,7 +84,6 @@ export class UpdateSeasonComponent {
 
   editSeason() {
     this.attemptedSubmit = true;
-    console.log(this.seasonForm.value);
 
     if (this.seasonForm.value.fechaFinal == '') { }
 
@@ -104,23 +102,9 @@ export class UpdateSeasonComponent {
     };
 
 
-    console.log(newSeason);
-
-
-
-    if (this.seasonForm.invalid) {
-  // Recorre todos los controles del formulario para ver sus errores
-  Object.keys(this.seasonForm.controls).forEach(key => {
-    const controlErrors = this.seasonForm.get(key)?.errors;
-    if (controlErrors) {
-      console.log(`Control: ${key}, Errors:`, controlErrors);
-    }
-  });      return;
-    }
 
     this._seasonService.updateSeason(this.season.id, newSeason).subscribe({
       next: (data) => {
-        console.log(data);
         this.dialogRef.close();
       },
       error: (error) => {

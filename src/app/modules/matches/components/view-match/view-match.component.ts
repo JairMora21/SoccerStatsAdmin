@@ -47,7 +47,6 @@ export class ViewMatchComponent {
         const dia = fechaCompleta.getDate() + 1;
         const fechaFormateada = `${mes}/${dia}`;
         this.fechaFormat = fechaFormateada;
-        console.log(this.partidoStats);
       }
     } catch (error) {
       console.error('Error al obtener el equipo', error);

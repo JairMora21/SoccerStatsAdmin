@@ -26,7 +26,6 @@ export class DeleteSeasonComponent {
   ) { }
 
   ngOnInit(): void {
-    console.log('Data:', this.data);
     this.seasonName = this.data.seasonName;    
   }
 
@@ -35,7 +34,6 @@ export class DeleteSeasonComponent {
   }
 
   deleteSeason() {
-    console.log('Eliminando temporada', this.data.seasonName);
     this._seasonService.deleteSeason(this.data.seasonId).subscribe({
       next: (data : APIResponse) => {
         if(!data.isSuccess) {
@@ -45,7 +43,6 @@ export class DeleteSeasonComponent {
 
           return;
         }
-        console.log('Season deleted:', data);
         this.dialogRef.close();
       },
       error: (error) => {

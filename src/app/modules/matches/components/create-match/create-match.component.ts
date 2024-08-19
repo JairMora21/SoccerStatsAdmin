@@ -138,7 +138,6 @@ export class CreateMatchComponent {
         if (data.isSuccess == false) {
           console.error('Error al obtener jugadores', data.errorMessages);
         } else {
-          console.log(data.result);
           this.players = data.result;
         }
       },
@@ -165,8 +164,6 @@ export class CreateMatchComponent {
 
     this.selectedParticipatePlayersId = selectedPlayerIds;
 
-    //console.log(this.selectedParticipatePlayers);
-    console.log('selectedParticipatePlayersId:', selectedPlayerIds);
   }
 
   navigate(direction: number) {
@@ -198,7 +195,6 @@ export class CreateMatchComponent {
     }
     this.isMoreThanTotalGoals = false;
     player.Goles += 1;
-    console.log(this.selectedParticipatePlayers);
   }
 
   removeGoal(player: PlayerStats) {
@@ -206,12 +202,9 @@ export class CreateMatchComponent {
     if (player.Goles > 0) {
       player.Goles -= 1;
     }
-    console.log(this.selectedParticipatePlayers);
   }
 
   addCard(player: PlayerStats, cardType: string) {
-    console.log('adding card to player:', player.Nombre);
-    console.log('Card type:', cardType);
     if (cardType == 'yellow') {
       player.Amarillas += 1;
     } else {
@@ -220,8 +213,6 @@ export class CreateMatchComponent {
   }
 
   removeCard(player: PlayerStats, cardType: string) {
-    console.log('removin card to player:', player.Nombre);
-    console.log('Card type:', cardType);
     if (cardType == 'yellow') {
       if (player.Amarillas > 0) {
         player.Amarillas -= 1;
@@ -266,7 +257,6 @@ export class CreateMatchComponent {
 
   onSubmit() {
 
-    console.log(this.form.value);
 
     if (this.form.valid) {
       const defaultPlayers = this.defaultGoals.filter(player => player.Goles > 0);
@@ -280,14 +270,12 @@ export class CreateMatchComponent {
       const resultId = this.getResultId(goalsAgainst, goalsFor);
       this.form.get('result.IdResultado')?.setValue(resultId);
 
-      console.log(this.form.value);
 
       this._matchService.createMatch(this.form.value).subscribe({
         next: (data: any) => {
           if (data.isSuccess == false) {
             console.error('Error al crear partido', data.errorMessages);
           } else {
-            console.log(data.result);
             this.closeDialog();
           }
         },

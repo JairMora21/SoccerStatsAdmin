@@ -102,7 +102,6 @@ export class TeamComponent {
         if (data.isSuccess == false) {
           console.error('Error al obtener jugadores', data.errorMessages);
         } else {
-          console.log(data.result);
           this.players = data.result;
           this.filteredPlayers = this.players;
         }

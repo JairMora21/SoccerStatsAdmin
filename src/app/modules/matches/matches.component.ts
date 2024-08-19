@@ -63,7 +63,6 @@ export class MatchesComponent {
 
   async ngOnInit() {
     await this.getSeasons();
-    console.log('Seasons:', this.seasonSelectd);
     if (this.seasonSelectd > 0) {
       this.getMatches(this.seasonSelectd);
     } else {
@@ -81,17 +80,16 @@ export class MatchesComponent {
         if (data.isSuccess) {
           this.seasons = data.result;
           if (this.seasons.length > 0) {
-            console.log('Temporadas:', this.seasons);
             const lastSeason = this.seasons[0];
             this.seasonSelectd = lastSeason.id;
           } else {
-            console.log('No hay temporadas disponibles.');
+            console.error('No hay temporadas disponibles.');
           }
         } else {
-          console.log(data.errorMessages);
+          console.error(data.errorMessages);
         }
       } catch (error) {
-        console.log('Error al obtener las temporadas:', error);
+        console.error('Error al obtener las temporadas:', error);
       }
     } else {
       console.log('ID de equipo no encontrado en almacenamiento local.');
@@ -122,7 +120,7 @@ export class MatchesComponent {
           });
           this.filteredMatches = this.matches;
         } else {
-          console.log(data.errorMessages);
+          console.error(data.errorMessages);
         }
       });
     }
@@ -135,7 +133,7 @@ export class MatchesComponent {
       this.seasonSelectd = +seasonId;
       this.getMatches(+seasonId);
     } else {
-      console.log('No se pudo obtener el select element');
+      console.error('No se pudo obtener el select element');
     }
   }
 

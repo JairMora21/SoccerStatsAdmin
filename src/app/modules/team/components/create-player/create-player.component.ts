@@ -59,7 +59,6 @@ export class CreatePlayerComponent {
           console.error('Error al obtener posiciones', data.errorMessages);
         } else {
           this.positions = data.result;
-          console.log(this.positions);
           
         }
       },
@@ -82,16 +81,13 @@ export class CreatePlayerComponent {
       };
       
 
-      console.log(playerData);
       
       
       this._teamService.createPlayer(playerData).subscribe({
         next: (data) => {
-          console.log(data);
           if (data.isSuccess == false) {
             console.error('Error al crear jugador', data.errorMessages);
           } else {
-            console.log('Jugador creado correctamente');
             this.dialogRef.close();
           }
         },
@@ -100,7 +96,6 @@ export class CreatePlayerComponent {
         }
       });
     } else {
-      console.log('El formulario no es válido.');
      
       this.playerForm.markAllAsTouched(); 
     }

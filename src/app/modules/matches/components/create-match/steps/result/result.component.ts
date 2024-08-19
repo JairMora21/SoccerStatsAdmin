@@ -23,10 +23,6 @@ export class ResultComponent {
   number: string = '0';
 
   ngOnInit(): void {
-    console.log('Nombre del Rival:', this.nombreRival?.value);
-    console.log('Goles a Favor:', this.golesFavor?.value);
-    console.log('Goles en Contra:', this.golesContra?.value);
-    console.log('Fecha de Inicio:', this.fechaInicio?.value);
     }
 
   get nombreRival(): AbstractControl | null {

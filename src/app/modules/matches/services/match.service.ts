@@ -28,8 +28,6 @@ export class MatchService {
   }
 
   editMatch(match: IUpdateMatch, matchId: number): Observable<APIResponse> {
-    console.log('match', match);
-    console.log('matchId', matchId);
     const url = `${this.apiUrl}/Partido/UpdatePartido/${matchId}`;
     return this._http.put<APIResponse>(url, match);
   }

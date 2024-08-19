@@ -64,7 +64,6 @@ export class SeasonsComponent {
         }
         this.seasons = data.result;
         this.filteredSeasons = [...this.seasons];
-        console.log('Seasons:', this.seasons);
       },
       error: (error) => {
         console.error('An error occurred while fetching seasons:', error);
@@ -73,7 +72,6 @@ export class SeasonsComponent {
   }
 
   filterData() {
-    console.log('searchInput:', this.searchInput);
     if (!this.searchInput) {
       this.filteredSeasons = this.seasons;
     } else {

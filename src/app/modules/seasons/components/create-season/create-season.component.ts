@@ -60,7 +60,6 @@ export class CreateSeasonComponent {
       noTemporada: this.seasonForm.value.noTemporada
     }
 
-    console.log(newSeason);
     
     
     if (this.seasonForm.invalid) {
@@ -70,7 +69,6 @@ export class CreateSeasonComponent {
     this._seasonService.createSeason(newSeason).subscribe({
       next: (data) => {
         if (!data.isSuccess) {
-          console.log(data);
           console.error('Error al crear temporada', data.errorMessages);
         } else {
           this.dialogRef.close();

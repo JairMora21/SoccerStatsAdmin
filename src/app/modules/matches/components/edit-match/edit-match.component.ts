@@ -94,8 +94,6 @@ export class EditMatchComponent {
     this.getTypesOfMatches();
     await this.obtenerPartidoStats(this.data.idMatch);
     this.selectedParticipatePlayers = this.transformPlayerStats(this.partidoStats);
-    console.log('partidoStats:', this.partidoStats);
-    console.log('estadisticas jugador:', this.selectedParticipatePlayers);
     this.selectedParticipatePlayersId = this.selectedParticipatePlayers.map((player) => player.Id);
 
     if (this.partidoStats && this.partidoStats.datosPartido) {
@@ -187,7 +185,6 @@ export class EditMatchComponent {
         if (data.isSuccess == false) {
           console.error('Error al obtener jugadores', data.errorMessages);
         } else {
-          console.log(data.result);
           this.players = data.result;
         }
       },
@@ -240,14 +237,12 @@ export class EditMatchComponent {
 
   onSubmit() {
     if (this.form.valid) {
-      console.log('Formulario:', this.form.value);
 
       const defaultPlayers = this.defaultGoals.filter(player => player.Goles > 0);
       this.selectedParticipatePlayers = [...defaultPlayers, ...this.selectedParticipatePlayers];
       this.selectedParticipatePlayers.forEach(player => {
         this.playerStats.push(this.fb.group(player));
       });
-      console.log('Formulario:', this.form.value);
 
 
       const goalsAgainst = this.form.get('result.GolesContra')?.value;
@@ -274,8 +269,6 @@ export class EditMatchComponent {
   }
 
   addCard(player: PlayerStats, cardType: string) {
-    console.log('adding card to player:', player.Nombre);
-    console.log('Card type:', cardType);
     if (cardType == 'yellow') {
       player.Amarillas += 1;
     } else {
@@ -284,8 +277,6 @@ export class EditMatchComponent {
   }
 
   removeCard(player: PlayerStats, cardType: string) {
-    console.log('removin card to player:', player.Nombre);
-    console.log('Card type:', cardType);
     if (cardType == 'yellow') {
       if (player.Amarillas > 0) {
         player.Amarillas -= 1;
@@ -308,7 +299,6 @@ export class EditMatchComponent {
     }
     this.isMoreThanTotalGoals = false;
     player.Goles += 1;
-    console.log(this.selectedParticipatePlayers);
   }
 
   removeGoal(player: PlayerStats) {
@@ -316,7 +306,6 @@ export class EditMatchComponent {
     if (player.Goles > 0) {
       player.Goles -= 1;
     }
-    console.log(this.selectedParticipatePlayers);
   }
 
   getIdGameResult(card: string): number {
