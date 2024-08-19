@@ -5,46 +5,23 @@
     <!-- Mi Equipo -->
     <div class="flex flex-col items-center">
       <div class="relative mb-4">
-        <div class="rounded-full bg-darkblue-800 p-4">
-          <!-- Icono del equipo -->
-          <img
-            alt="Mi Equipo"
-            class="w-16 h-16"
-          />
-        </div>
-        <div class="absolute bottom-0 right-0 bg-blue-500 rounded-full p-1">
-          <img  alt="Football" class="w-6 h-6" />
+        <div class="rounded-full bg-darkblue-800 p-2 overflow-hidden shadow-lg">
+          <!-- Icono del equipo con sombra -->
+          <img alt="Mi Equipo" class="w-60 h-60 shadow-2xl	" src="assets/main_page/MiEquipo.webp" />
         </div>
       </div>
-      <div class="text-lg mb-2">MI EQUIPO</div>
-      <button
-      class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
-      (click)="goToTeam()"
-    >
-      Mi Equipo
-    </button>
-      <!-- Estadísticas de Mi Equipo -->
-      <div class="flex justify-around w-full px-10 mt-4">
-        <div class="text-center">
-          <div class="text-lg">2.51</div>
-          <div class="text-xs text-gray-400">Estadística 1</div>
-        </div>
-        <div class="text-center">
-          <div class="text-lg">3/4</div>
-          <div class="text-xs text-gray-400">Estadística 2</div>
-        </div>
-        <div class="text-center">
-          <div class="text-lg">4.613</div>
-          <div class="text-xs text-gray-400">Estadística 3</div>
-        </div>
-      </div>
+      <button type="button" (click)="goToTeam()"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Mi Equipo
+      </button>
+
+      <div class="w-full h-1 bg-no-repeat bg-center my-4" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 120%22 preserveAspectRatio=%22none%22><path d=%22M0,40 C150,150 350,0 500,40 C650,80 850,150 1000,80 L1200,40 L1200,150 L0,150 Z%22 fill=%22%23cccccc%22/></svg>');"></div>
+
       <!-- Gráfico de Mi Equipo -->
       <div class="flex justify-center w-full px-10 mt-4">
         <div class="text-center">
-          <img
-            alt="Gráfico Mi Equipo"
-            class="w-32 h-32"
-          />
+          <img alt="Gráfico Mi Equipo" class="w-60 h-32 rounded-lg"
+            src="assets/main_page/EquipoSec.webp" />
         </div>
       </div>
     </div>
@@ -52,47 +29,23 @@
     <!-- Partidos -->
     <div class="flex flex-col items-center">
       <div class="relative mb-4">
-        <div class="rounded-full bg-darkblue-800 p-4">
-          <!-- Icono de partidos -->
-          <img
-
-
-          alt="Partidos"
-            class="w-16 h-16"
-          />
-        </div>
-        <div class="absolute bottom-0 right-0 bg-blue-500 rounded-full p-1">
+        <div class="rounded-full bg-darkblue-800 p-2 overflow-hidden shadow-lg">
+          <!-- Icono del equipo con sombra -->
+          <img alt="Mi Equipo" class="w-60 h-60 shadow-2xl	" src="assets/main_page/Partido.webp" />
         </div>
       </div>
-      <div class="text-lg mb-2">PARTIDOS</div>
-      <button
-      class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
-      (click)="goToMatches()"
-    >
-      Partidos
-    </button>
-      <!-- Estadísticas de Partidos -->
-      <div class="flex justify-around w-full px-10 mt-4">
-        <div class="text-center">
-          <div class="text-lg">3/4</div>
-          <div class="text-xs text-gray-400">Estadística 1</div>
-        </div>
-        <div class="text-center">
-          <div class="text-lg">2.51</div>
-          <div class="text-xs text-gray-400">Estadística 2</div>
-        </div>
-        <div class="text-center">
-          <div class="text-lg">4.613</div>
-          <div class="text-xs text-gray-400">Estadística 3</div>
-        </div>
-      </div>
-      <!-- Gráfico de Partidos -->
+      <button type="button" (click)="goToMatches()"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Partidos
+      </button>
+
+      <div class="w-full h-1 bg-no-repeat bg-center my-4" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 120%22 preserveAspectRatio=%22none%22><path d=%22M0,40 C150,150 350,0 500,40 C650,80 850,150 1000,80 L1200,40 L1200,150 L0,150 Z%22 fill=%22%23cccccc%22/></svg>');"></div>
+
+      <!-- Gráfico de Mi Equipo -->
       <div class="flex justify-center w-full px-10 mt-4">
         <div class="text-center">
-          <img
-            alt="Gráfico Partidos"
-            class="w-32 h-32"
-          />
+          <img alt="Gráfico Mi Equipo" class="w-60 h-32 rounded-lg"
+            src="https://media.istockphoto.com/id/1390780085/es/vector/estrategia-de-f%C3%BAtbol-t%C3%A1ctica-de-juego-de-f%C3%BAtbol-dibujando-en-pizarra-esquema-de-juego-de.jpg?s=612x612&w=0&k=20&c=VH-tQ8ubUtD65ci6-mo4yf4fjmy4wv5AuhL6d-aloQE=" />
         </div>
       </div>
     </div>
@@ -100,47 +53,26 @@
     <!-- Temporadas -->
     <div class="flex flex-col items-center">
       <div class="relative mb-4">
-        <div class="rounded-full bg-darkblue-800 p-4">
-          <!-- Icono de temporadas -->
-          <img
-            alt="Temporadas"
-            class="w-16 h-16"
-          />
-        </div>
-        <div class="absolute bottom-0 right-0 bg-blue-500 rounded-full p-1">
+        <div class="rounded-full bg-darkblue-800 p-2 overflow-hidden shadow-lg">
+          <!-- Icono del equipo con sombra -->
+          <img alt="Mi Equipo" class="w-60 h-60 shadow-2xl	" src="assets/main_page/Temporadas.webp" />
         </div>
       </div>
-      <div class="text-lg mb-2">TEMPORADAS</div>
-      <button
-      class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
-      (click)="goToSeasons()"
-    >
-      Temporadas
-    </button>
-      <!-- Estadísticas de Temporadas -->
-      <div class="flex justify-around w-full px-10 mt-4">
-        <div class="text-center">
-          <div class="text-lg">4.613</div>
-          <div class="text-xs text-gray-400">Estadística 1</div>
-        </div>
-        <div class="text-center">
-          <div class="text-lg">3/4</div>
-          <div class="text-xs text-gray-400">Estadística 2</div>
-        </div>
-        <div class="text-center">
-          <div class="text-lg">2.51</div>
-          <div class="text-xs text-gray-400">Estadística 3</div>
-        </div>
-      </div>
-      <!-- Gráfico de Temporadas -->
+      <button type="button" (click)="goToSeasons()"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Temporadas
+      </button>
+
+      <div class="w-full h-1 bg-no-repeat bg-center my-4" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 120%22 preserveAspectRatio=%22none%22><path d=%22M0,40 C150,150 350,0 500,40 C650,80 850,150 1000,80 L1200,40 L1200,150 L0,150 Z%22 fill=%22%23cccccc%22/></svg>');"></div>
+
+      <!-- Gráfico de Mi Equipo -->
       <div class="flex justify-center w-full px-10 mt-4">
         <div class="text-center">
-          <img
-            alt="Gráfico Temporadas"
-            class="w-32 h-32"
-          />
+          <img alt="Gráfico Mi Equipo" class="w-60 h-32 rounded-lg"
+            src="https://img.freepik.com/vector-premium/calendario-pared-ano-2020-estilo-minimalista-limpio-modo-oscuro-semana-comienza-lunes-conjunto-12-meses_1187015-4325.jpg" />
         </div>
       </div>
     </div>
+
   </div>
 </div>
