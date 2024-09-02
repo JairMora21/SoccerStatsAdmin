@@ -216,6 +216,13 @@ export class MatchesComponent {
 
 
   createMatch() {
+
+    if (!this.seasonSelectd) {
+      console.error('No hay temporada seleccionada para crear un partido.');
+      alert('Por favor, selecciona una temporada antes de crear un partido.'); 
+      return;
+    }
+
     const dialogRef = this.dialog.open(CreateMatchComponent, {
       data: {
         seasonId: this.seasonSelectd,
