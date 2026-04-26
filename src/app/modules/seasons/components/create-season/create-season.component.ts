@@ -13,17 +13,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
-  selector: 'app-create-season',
-  standalone: true,
-  imports: [ CommonModule, 
-    FormsModule, 
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatNativeDateModule,],
-  templateUrl: './create-season.component.html',
-  styleUrl: './create-season.component.css'
+    selector: 'app-create-season',
+    imports: [CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatNativeDateModule,],
+    templateUrl: './create-season.component.html',
+    styleUrl: './create-season.component.css'
 })
 export class CreateSeasonComponent {
 

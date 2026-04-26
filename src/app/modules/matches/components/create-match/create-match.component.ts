@@ -27,12 +27,11 @@ import { MatchService } from '../../services/match.service';
 import { LocalStorageService } from '../../../../shared/services/local-storage.service';
 
 @Component({
-  selector: 'app-create-match',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, ResultComponent, PlayersComponent, GoalsComponent, CardsComponent, SummaryMatchComponent, MatDatepickerModule, MatStepperModule, MatIcon
-    , MatSelectModule, MatRadioModule, MatButtonModule, MatButtonToggleModule, FormsModule],
-  templateUrl: './create-match.component.html',
-  styleUrl: './create-match.component.css',
+    selector: 'app-create-match',
+    imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, ResultComponent, PlayersComponent, GoalsComponent, CardsComponent, SummaryMatchComponent, MatDatepickerModule, MatStepperModule, MatIcon,
+        MatSelectModule, MatRadioModule, MatButtonModule, MatButtonToggleModule, FormsModule],
+    templateUrl: './create-match.component.html',
+    styleUrl: './create-match.component.css'
 })
 export class CreateMatchComponent {
   currentViewIndex: number = 1;

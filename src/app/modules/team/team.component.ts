@@ -14,11 +14,10 @@ import { EditPlayerComponent } from './components/edit-player/edit-player.compon
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-team',
-  standalone: true,
-  templateUrl: './team.component.html',
-  styleUrl: './team.component.css',
-  imports: [NavbarComponent, CommonModule, MatMenuModule, MatIconModule, FormsModule],
+    selector: 'app-team',
+    templateUrl: './team.component.html',
+    styleUrl: './team.component.css',
+    imports: [NavbarComponent, CommonModule, MatMenuModule, MatIconModule, FormsModule]
 })
 export class TeamComponent {
   

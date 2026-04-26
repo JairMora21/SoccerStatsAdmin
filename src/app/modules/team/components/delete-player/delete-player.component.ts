@@ -3,11 +3,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TeamService } from '../../services/team.service';
 
 @Component({
-  selector: 'app-delete-player',
-  standalone: true,
-  imports: [],
-  templateUrl: './delete-player.component.html',
-  styleUrl: './delete-player.component.css'
+    selector: 'app-delete-player',
+    imports: [],
+    templateUrl: './delete-player.component.html',
+    styleUrl: './delete-player.component.css'
 })
 export class DeletePlayerComponent {
 

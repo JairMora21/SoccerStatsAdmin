@@ -1,5 +1,4 @@
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 import { LoginDto as LoginDto } from './dto/login.dto';
@@ -10,11 +9,10 @@ import { isPlatformBrowser } from '@angular/common';
 import { LocalStorageService } from '../../shared/services/local-storage.service';
 
 @Component({
-  selector: 'app-auth',
-  standalone: true,
-  imports: [FormsModule, HttpClientModule],
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css']
+    selector: 'app-auth',
+    imports: [FormsModule],
+    templateUrl: './auth.component.html',
+    styleUrls: ['./auth.component.css']
 })
 export class AuthComponent {
   username: string = '';

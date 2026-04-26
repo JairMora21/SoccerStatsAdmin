@@ -19,17 +19,16 @@ import { IClasification, ResultClasification } from '../../../../core/models/att
 import { ITemporada } from '../../../../core/models/seasons/season.model';
 
 @Component({
-  selector: 'app-update-season',
-  standalone: true,
-  imports: [CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatNativeDateModule,],
-  templateUrl: './update-season.component.html',
-  styleUrl: './update-season.component.css'
+    selector: 'app-update-season',
+    imports: [CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatNativeDateModule,],
+    templateUrl: './update-season.component.html',
+    styleUrl: './update-season.component.css'
 })
 export class UpdateSeasonComponent {
 

@@ -11,11 +11,10 @@ import { LocalStorageService } from '../../services/local-storage.service';
 
 
 @Component({
-  selector: 'app-navbar',
-  standalone: true,
-  imports: [CommonModule, MatMenuModule, MatButtonModule, MatIconModule],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css',
+    selector: 'app-navbar',
+    imports: [CommonModule, MatMenuModule, MatButtonModule, MatIconModule],
+    templateUrl: './navbar.component.html',
+    styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
   equipos: ResultEquipo[] = [];

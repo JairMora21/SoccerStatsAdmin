@@ -7,11 +7,10 @@ import { DeleteSeason } from '../../Models/delete-season.model';
 
 
 @Component({
-  selector: 'app-delete-season',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './delete-season.component.html',
-  styleUrl: './delete-season.component.css'
+    selector: 'app-delete-season',
+    imports: [CommonModule],
+    templateUrl: './delete-season.component.html',
+    styleUrl: './delete-season.component.css'
 })
 export class DeleteSeasonComponent {
 

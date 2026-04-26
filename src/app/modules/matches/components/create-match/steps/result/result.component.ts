@@ -6,17 +6,16 @@ import { ReactiveFormsModule, FormGroup, FormControl, AbstractControl } from '@a
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-result',
-  standalone: true,
-  imports: [
-    MatDatepickerModule, 
-    MatFormFieldModule, 
-    MatInputModule, 
-    ReactiveFormsModule,
-    MatIcon
-  ],
-  templateUrl: './result.component.html',
-  styleUrls: ['./result.component.css']
+    selector: 'app-result',
+    imports: [
+        MatDatepickerModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatIcon
+    ],
+    templateUrl: './result.component.html',
+    styleUrls: ['./result.component.css']
 })
 export class ResultComponent {
   @Input() formGroup!: FormGroup;

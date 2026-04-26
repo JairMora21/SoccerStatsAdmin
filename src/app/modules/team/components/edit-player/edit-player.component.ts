@@ -20,11 +20,10 @@ import { ResultPlayers } from '../../models/players.model';
 import { IUpdatePlayer } from '../../../../core/models/players/update-player.model';
 
 @Component({
-  selector: 'app-edit-player',
-  standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  templateUrl: './edit-player.component.html',
-  styleUrl: './edit-player.component.css',
+    selector: 'app-edit-player',
+    imports: [CommonModule, FormsModule, ReactiveFormsModule],
+    templateUrl: './edit-player.component.html',
+    styleUrl: './edit-player.component.css'
 })
 export class EditPlayerComponent {
   playerForm: FormGroup = new FormGroup({});

@@ -25,19 +25,17 @@ import { ViewMatchComponent } from './components/view-match/view-match.component
 import { EditMatchComponent } from './components/edit-match/edit-match.component';
 import { LocalStorageService } from '../../shared/services/local-storage.service';
 @Component({
-  selector: 'app-matches',
-  standalone: true,
-  templateUrl: './matches.component.html',
-  styleUrl: './matches.component.css',
-  imports: [
-    NavbarComponent,
-    CommonModule,
-    MatMenuModule,
-    MatIconModule, 
-    FormsModule,
-  ],
-  encapsulation: ViewEncapsulation.Emulated // O ShadowDom
-
+    selector: 'app-matches',
+    templateUrl: './matches.component.html',
+    styleUrl: './matches.component.css',
+    imports: [
+        NavbarComponent,
+        CommonModule,
+        MatMenuModule,
+        MatIconModule,
+        FormsModule,
+    ],
+    encapsulation: ViewEncapsulation.Emulated // O ShadowDom
 })
 export class MatchesComponent {
   lastSeasonId: number = 0;

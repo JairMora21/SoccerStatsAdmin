@@ -20,17 +20,16 @@ import { LocalStorageService } from '../../shared/services/local-storage.service
 import { DeleteSeason } from './Models/delete-season.model';
 
 @Component({
-  selector: 'app-seasons',
-  standalone: true,
-  templateUrl: './seasons.component.html',
-  styleUrl: './seasons.component.css',
-  imports: [
-    NavbarComponent,
-    CommonModule,
-    MatMenuModule,
-    MatIconModule,
-    FormsModule,
-  ],
+    selector: 'app-seasons',
+    templateUrl: './seasons.component.html',
+    styleUrl: './seasons.component.css',
+    imports: [
+        NavbarComponent,
+        CommonModule,
+        MatMenuModule,
+        MatIconModule,
+        FormsModule,
+    ]
 })
 export class SeasonsComponent {
   filteredSeasons: ITemporada[] = [];

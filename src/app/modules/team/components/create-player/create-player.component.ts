@@ -14,11 +14,10 @@ import { LOCAL_STORAGE } from '../../../../shared/Constants/local-storage';
 
 
 @Component({
-  selector: 'app-create-player',
-  standalone: true,
-  imports: [ CommonModule, FormsModule, ReactiveFormsModule],
-  templateUrl: './create-player.component.html',
-  styleUrl: './create-player.component.css'
+    selector: 'app-create-player',
+    imports: [CommonModule, FormsModule, ReactiveFormsModule],
+    templateUrl: './create-player.component.html',
+    styleUrl: './create-player.component.css'
 })
 export class CreatePlayerComponent {
 

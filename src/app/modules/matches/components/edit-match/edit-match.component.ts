@@ -28,12 +28,11 @@ import { TeamService } from '../../../team/services/team.service';
 import { LocalStorageService } from '../../../../shared/services/local-storage.service';
 
 @Component({
-  selector: 'app-edit-match',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, ResultComponent, PlayersComponent, GoalsComponent, CardsComponent, SummaryMatchComponent, MatDatepickerModule, MatStepperModule, MatIcon
-    , MatSelectModule, MatRadioModule, MatButtonModule, MatButtonToggleModule, FormsModule],
-  templateUrl: './edit-match.component.html',
-  styleUrl: './edit-match.component.css'
+    selector: 'app-edit-match',
+    imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, ResultComponent, PlayersComponent, GoalsComponent, CardsComponent, SummaryMatchComponent, MatDatepickerModule, MatStepperModule, MatIcon,
+        MatSelectModule, MatRadioModule, MatButtonModule, MatButtonToggleModule, FormsModule],
+    templateUrl: './edit-match.component.html',
+    styleUrl: './edit-match.component.css'
 })
 export class EditMatchComponent {
   dataLoaded = false;

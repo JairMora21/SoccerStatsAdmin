@@ -5,11 +5,10 @@ import { CommonModule } from '@angular/common';
 import { MatchService } from '../../services/match.service';
 import { DeleteMatch } from '../../models/match-delete.model';
 @Component({
-  selector: 'app-delete-match',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './delete-match.component.html',
-  styleUrl: './delete-match.component.css'
+    selector: 'app-delete-match',
+    imports: [CommonModule],
+    templateUrl: './delete-match.component.html',
+    styleUrl: './delete-match.component.css'
 })
 export class DeleteMatchComponent {
 

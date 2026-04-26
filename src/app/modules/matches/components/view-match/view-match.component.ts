@@ -8,11 +8,10 @@ import { firstValueFrom } from 'rxjs';
 import { LocalStorageService } from '../../../../shared/services/local-storage.service';
 
 @Component({
-  selector: 'app-view-match',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './view-match.component.html',
-  styleUrl: './view-match.component.css'
+    selector: 'app-view-match',
+    imports: [CommonModule],
+    templateUrl: './view-match.component.html',
+    styleUrl: './view-match.component.css'
 })
 export class ViewMatchComponent {
 
