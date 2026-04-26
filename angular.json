@@ -55,6 +55,27 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "iis": {
+              "fileReplacements": [
+                {
+                  "replace": "enviroment.ts",
+                  "with": "enviroment.iis.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -67,6 +88,9 @@
             },
             "development": {
               "buildTarget": "SoccerStatsAdmin:build:development"
+            },
+            "iis": {
+              "buildTarget": "SoccerStatsAdmin:build:iis"
             }
           },
           "defaultConfiguration": "development"
